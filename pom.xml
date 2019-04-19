@@ -220,15 +220,15 @@
     </licenses>
     <scm>
         <tag>master</tag>
-        <url>https://gitee.com/W-CODEHOME/common.git</url>
-        <connection>scm:git:git@gitee.com/W-CODEHOME/common.git</connection>
-        <developerConnection>scm:git:git@gitee.com/W-CODEHOME/common.git</developerConnection>
+        <url>https://com.github.yaogouh.common.git</url>
+        <connection>scm:git:git@com.github.yaogouh.common.git</connection>
+        <developerConnection>scm:git:git@com.github.yaogouh.common.git</developerConnection>
     </scm>
     <developers>
         <developer>
             <name>wyg</name>
             <email>861375234@qq.com</email>
-            <organization>rsswrok</organization>
+            <organization>rsswork</organization>
         </developer>
     </developers>
 </project>
