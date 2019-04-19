@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <groupId>com.github.yaogouh.common</groupId>
+    <artifactId>common</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>common-util</module>
+        <module>common-elasticsearch</module>
+        <module>common-jpa</module>
+        <module>common-redis</module>
+        <module>common-spring-cloud</module>
+        <module>common-exception</module>
+        <module>common-swagger</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <idata.brain.version>1.0-SNAPSHOT</idata.brain.version>
+        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-boot-admin.version>2.1.3</spring-boot-admin.version>
+        <jasypt.version>2.1.1</jasypt.version>
+        <elasticsearch.version>6.7.0</elasticsearch.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <swagger.version>2.9.2</swagger.version>
+        <alibaba-fastjson.version>1.2.56</alibaba-fastjson.version>
+        <guava.version>27.1-jre</guava.version>
+        <logstash.version>5.2</logstash.version>
+        <hutool.version>4.5.5</hutool.version>
+        <jwt.version>0.9.1</jwt.version>
+        <jib.version>1.0.2</jib.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--监控客户端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <!-- common start -->
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-exception</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-util</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-jpa</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-elasticsearch</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-spring-cloud</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaogouh.common</groupId>
+                <artifactId>common-swagger</artifactId>
+                <version>${idata.brain.version}</version>
+            </dependency>
+            <!-- common end -->
+
+            <!-- swagger start -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- swagger end -->
+
+            <!-- 工具包引入 -->
+            <!-- commons-io -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <!-- commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <!-- commons-collections -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <!-- commons-beanutils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba-fastjson.version}</version>
+            </dependency>
+            <!-- hutool工具类 -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!-- guava工具类 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!-- logback -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>https://gitee.com/W-CODEHOME/common.git</url>
+        <connection>scm:git:git@gitee.com/W-CODEHOME/common.git</connection>
+        <developerConnection>scm:git:git@gitee.com/W-CODEHOME/common.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>wyg</name>
+            <email>861375234@qq.com</email>
+            <organization>rsswrok</organization>
+        </developer>
+    </developers>
+</project>
