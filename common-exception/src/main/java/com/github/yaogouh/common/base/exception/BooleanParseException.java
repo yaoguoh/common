@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.base.exception;
+package com.github.yaogouh.base.exception;
 
 /**
  * The class Boolean parse exception.

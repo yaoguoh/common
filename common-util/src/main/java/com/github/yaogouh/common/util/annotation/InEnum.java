@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.util.annotation;
+package com.github.yaogouh.util.annotation;
 
 import java.lang.annotation.*;
 

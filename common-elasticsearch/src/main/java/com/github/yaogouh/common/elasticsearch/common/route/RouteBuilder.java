@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.elasticsearch.common.route;
+package com.github.yaogouh.elasticsearch.common.route;
 
 import org.springframework.util.ObjectUtils;
 

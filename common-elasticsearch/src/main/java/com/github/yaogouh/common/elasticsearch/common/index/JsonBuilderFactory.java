@@ -1,8 +1,8 @@
-package com.github.yaogouh.common.elasticsearch.common.index;
+package com.github.yaogouh.elasticsearch.common.index;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.yaogouh.common.elasticsearch.annotation.Ignore;
-import com.github.yaogouh.common.elasticsearch.annotation.Join;
+import com.github.yaogouh.elasticsearch.annotation.Ignore;
+import com.github.yaogouh.elasticsearch.annotation.Join;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;

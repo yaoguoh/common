@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.elasticsearch.common.page;
+package com.github.yaogouh.elasticsearch.common.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

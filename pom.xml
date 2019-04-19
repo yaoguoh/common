@@ -81,37 +81,37 @@
 
             <!-- common start -->
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-exception</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-util</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-jpa</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-elasticsearch</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-redis</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-spring-cloud</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.yaogouh.common</groupId>
+                <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-swagger</artifactId>
                 <version>${idata.brain.version}</version>
             </dependency>
@@ -220,9 +220,9 @@
     </licenses>
     <scm>
         <tag>master</tag>
-        <url>https://com.github.yaogouh.common.git</url>
-        <connection>scm:git:git@com.github.yaogouh.common.git</connection>
-        <developerConnection>scm:git:git@com.github.yaogouh.common.git</developerConnection>
+        <url>https://com.github.yaogouh.git</url>
+        <connection>scm:git:git@com.github.yaogouh.git</connection>
+        <developerConnection>scm:git:git@com.github.yaogouh.git</developerConnection>
     </scm>
     <developers>
         <developer>

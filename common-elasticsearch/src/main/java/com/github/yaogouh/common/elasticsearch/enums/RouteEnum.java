@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.elasticsearch.enums;
+package com.github.yaogouh.elasticsearch.enums;
 
 /**
  * The enum Route enum.

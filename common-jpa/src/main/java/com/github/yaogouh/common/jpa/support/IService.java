@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.jpa.support;
+package com.github.yaogouh.jpa.support;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

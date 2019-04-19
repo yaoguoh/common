@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.base.properties;
+package com.github.yaogouh.base.properties;
 
 import com.google.common.collect.Lists;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.base.enums;
+package com.github.yaogouh.base.enums;
 
 /**
  * 枚举跟接口（泛型使用）

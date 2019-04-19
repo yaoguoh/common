@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.elasticsearch.exception;
+package com.github.yaogouh.elasticsearch.exception;
 
 import org.elasticsearch.common.xcontent.StatusToXContentObject;
 import org.elasticsearch.rest.RestStatus;

@@ -1,4 +1,4 @@
-package com.github.yaogouh.common.util.wrapper;
+package com.github.yaogouh.util.wrapper;
 
 import org.apache.commons.lang3.StringUtils;
 

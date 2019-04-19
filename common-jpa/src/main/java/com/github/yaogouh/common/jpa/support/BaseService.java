@@ -1,6 +1,6 @@
-package com.github.yaogouh.common.jpa.support;
+package com.github.yaogouh.jpa.support;
 
-import com.github.yaogouh.common.base.exception.BusinessException;
+import com.github.yaogouh.base.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

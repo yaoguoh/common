@@ -1,5 +1,5 @@
 
-package com.github.yaogouh.common.redis.service;
+package com.github.yaogouh.redis.service;
 
 import javax.validation.constraints.NotNull;
 import java.util.Set;
