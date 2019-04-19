@@ -1,4 +1,4 @@
-package com.github.yaogouh.elasticsearch.enums;
+package com.github.yaogouh.common.elasticsearch.enums;
 
 /**
  * The enum Parent type 父子关系中父类型的映射名称.

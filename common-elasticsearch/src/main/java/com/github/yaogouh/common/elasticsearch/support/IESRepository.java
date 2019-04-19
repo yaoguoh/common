@@ -1,4 +1,4 @@
-package com.github.yaogouh.elasticsearch.support;
+package com.github.yaogouh.common.elasticsearch.support;
 
 import org.elasticsearch.action.index.IndexResponse;
 

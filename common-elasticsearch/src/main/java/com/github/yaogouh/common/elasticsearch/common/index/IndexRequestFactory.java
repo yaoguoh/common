@@ -1,6 +1,6 @@
-package com.github.yaogouh.elasticsearch.common.index;
+package com.github.yaogouh.common.elasticsearch.common.index;
 
-import com.github.yaogouh.elasticsearch.enums.ChildType;
+import com.github.yaogouh.common.elasticsearch.enums.ChildType;
 import org.elasticsearch.action.index.IndexRequest;
 
 import java.util.HashMap;

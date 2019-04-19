@@ -1,4 +1,4 @@
-package com.github.yaogouh.util;
+package com.github.yaogouh.common.util;
 
 /**
  * Jpa 查询工具类

@@ -1,4 +1,4 @@
-//package com.github.yaogouh.util.annotation;
+//package com.github.yaogouh.common.util.annotation;
 //
 //import lombok.extern.slf4j.Slf4j;
 //

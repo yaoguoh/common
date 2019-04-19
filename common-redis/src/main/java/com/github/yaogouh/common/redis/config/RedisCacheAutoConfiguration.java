@@ -1,4 +1,4 @@
-package com.github.yaogouh.redis.config;
+package com.github.yaogouh.common.redis.config;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;

@@ -1,7 +1,7 @@
-package com.github.yaogouh.jpa.support;//package com.github.yaogouh.base.support;
+package com.github.yaogouh.common.jpa.support;//package com.github.yaogouh.common.base.support;
 //
-//import com.github.yaogouh.util.wrapper.WrapMapper;
-//import com.github.yaogouh.util.wrapper.Wrapper;
+//import com.github.yaogouh.common.util.wrapper.WrapMapper;
+//import com.github.yaogouh.common.util.wrapper.Wrapper;
 //import io.swagger.annotations.ApiImplicitParam;
 //import io.swagger.annotations.ApiOperation;
 //import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
-package com.github.yaogouh.redis.service.impl;
+package com.github.yaogouh.common.redis.service.impl;
 
-import com.github.yaogouh.redis.service.RedisService;
+import com.github.yaogouh.common.redis.service.RedisService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;

@@ -13,7 +13,7 @@
     <groupId>com.github.yaogouh</groupId>
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
     <modules>
         <module>common-util</module>
         <module>common-elasticsearch</module>
@@ -28,7 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <idata.brain.version>1.0-SNAPSHOT</idata.brain.version>
+        <common.version>0.0.1</common.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.1.3</spring-boot-admin.version>
@@ -83,37 +83,37 @@
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-exception</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-util</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-jpa</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-elasticsearch</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-redis</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-spring-cloud</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.yaogouh</groupId>
                 <artifactId>common-swagger</artifactId>
-                <version>${idata.brain.version}</version>
+                <version>${common.version}</version>
             </dependency>
             <!-- common end -->
 
@@ -189,6 +189,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -198,6 +199,26 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- 生成javadoc-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+
+            <!--Nexus Staging Maven插件是将组件部署到OSSRH并将其发布到Central Repository的推荐方法-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>snapshots</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
@@ -210,7 +231,6 @@
         </resources>
     </build>
 
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -220,15 +240,14 @@
     </licenses>
     <scm>
         <tag>master</tag>
-        <url>https://com.github.yaogouh.git</url>
-        <connection>scm:git:git@com.github.yaogouh.git</connection>
-        <developerConnection>scm:git:git@com.github.yaogouh.git</developerConnection>
+        <url>https://com.github.yaogouh.common.git</url>
+        <connection>scm:git:git@com.github.yaogouh.common.git</connection>
+        <developerConnection>scm:git:git@com.github.yaogouh.common.git</developerConnection>
     </scm>
     <developers>
         <developer>
             <name>wyg</name>
             <email>861375234@qq.com</email>
-            <organization>rsswork</organization>
         </developer>
     </developers>
 </project>

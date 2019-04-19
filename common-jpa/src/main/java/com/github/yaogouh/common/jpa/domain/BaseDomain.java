@@ -1,4 +1,4 @@
-package com.github.yaogouh.jpa.domain;
+package com.github.yaogouh.common.jpa.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;

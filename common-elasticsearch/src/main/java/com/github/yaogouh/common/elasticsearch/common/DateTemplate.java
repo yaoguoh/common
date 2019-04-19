@@ -1,4 +1,4 @@
-package com.github.yaogouh.elasticsearch.common;
+package com.github.yaogouh.common.elasticsearch.common;
 
 /**
  * The type Date template.

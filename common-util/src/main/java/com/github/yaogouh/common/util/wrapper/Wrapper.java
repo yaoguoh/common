@@ -1,5 +1,5 @@
 
-package com.github.yaogouh.util.wrapper;
+package com.github.yaogouh.common.util.wrapper;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;

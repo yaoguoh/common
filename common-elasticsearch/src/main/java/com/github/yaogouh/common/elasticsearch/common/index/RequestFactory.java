@@ -1,4 +1,4 @@
-package com.github.yaogouh.elasticsearch.common.index;
+package com.github.yaogouh.common.elasticsearch.common.index;
 
 import org.elasticsearch.action.ActionRequest;
 

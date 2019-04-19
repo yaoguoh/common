@@ -1,4 +1,4 @@
-package com.github.yaogouh.elasticsearch.common.sort;
+package com.github.yaogouh.common.elasticsearch.common.sort;
 
 
 import org.elasticsearch.search.sort.SortOrder;
