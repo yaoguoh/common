@@ -1,7 +1,7 @@
 package com.github.yaoguoh.common.elasticsearch.support;
 
-import com.github.yaoguoh.common.elasticsearch.common.page.PageCondition;
-import com.github.yaoguoh.common.elasticsearch.common.sort.Sort;
+import com.idata.brain.common.elasticsearch.common.page.PageCondition;
+import com.idata.brain.common.elasticsearch.common.sort.Sort;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.search.SearchResponse;
 

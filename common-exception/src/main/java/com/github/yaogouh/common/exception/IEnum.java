@@ -1,4 +1,4 @@
-package com.github.yaoguoh.common.base.enums;
+package com.github.yaogouh.common.exception;
 
 /**
  * 枚举跟接口（泛型使用）

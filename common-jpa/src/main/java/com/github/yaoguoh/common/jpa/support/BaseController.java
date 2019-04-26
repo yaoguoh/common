@@ -1,7 +1,7 @@
-package com.github.yaoguoh.common.jpa.support;//package com.github.yaoguoh.common.base.support;
+package com.github.yaoguoh.common.jpa.support;//package com.idata.brain.common.base.support;
 //
-//import com.github.yaoguoh.common.util.wrapper.WrapMapper;
-//import com.github.yaoguoh.common.util.wrapper.Wrapper;
+//import com.idata.brain.common.util.wrapper.WrapMapper;
+//import com.idata.brain.common.util.wrapper.Wrapper;
 //import io.swagger.annotations.ApiImplicitParam;
 //import io.swagger.annotations.ApiOperation;
 //import lombok.extern.slf4j.Slf4j;

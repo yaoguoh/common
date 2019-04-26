@@ -1,8 +1,8 @@
 package com.github.yaoguoh.common.elasticsearch.support;
 
-import com.github.yaoguoh.common.elasticsearch.common.index.GetResponseResolver;
-import com.github.yaoguoh.common.elasticsearch.common.index.IndexRequestFactory;
-import com.github.yaoguoh.common.elasticsearch.common.index.JsonBuilderFactory;
+import com.idata.brain.common.elasticsearch.common.index.GetResponseResolver;
+import com.idata.brain.common.elasticsearch.common.index.IndexRequestFactory;
+import com.idata.brain.common.elasticsearch.common.index.JsonBuilderFactory;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;

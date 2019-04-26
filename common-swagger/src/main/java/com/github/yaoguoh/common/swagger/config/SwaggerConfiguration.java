@@ -1,6 +1,6 @@
-package com.github.yaoguoh.common.base.config;
+package com.github.yaoguoh.common.swagger.config;
 
-import com.github.yaoguoh.common.base.properties.SwaggerProperties;
+import com.github.yaoguoh.common.swagger.properties.SwaggerProperties;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

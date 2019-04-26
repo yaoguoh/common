@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.3.RELEASE</version>
     <packaging>pom</packaging>
     <description>Common Dependencies</description>
     <licenses>
@@ -48,7 +48,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <common.version>1.0.0-SNAPSHOT</common.version>
+        <common.version>1.1.3.RELEASE</common.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.1.3</spring-boot-admin.version>

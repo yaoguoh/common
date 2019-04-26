@@ -14,7 +14,7 @@ public interface RedisService {
      * Gets key. 通过 key 查询
      *
      * @param key the key
-     * @return value
+     * @return value by key
      */
     String getByKey(@NotNull String key);
 

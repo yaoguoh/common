@@ -1,4 +1,4 @@
-package com.github.yaoguoh.common.base.exception;
+package com.github.yaogouh.common.exception;
 
 /**
  * The class Config exception.

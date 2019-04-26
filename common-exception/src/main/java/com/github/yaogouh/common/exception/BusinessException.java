@@ -1,6 +1,4 @@
-package com.github.yaoguoh.common.base.exception;
-
-import com.github.yaoguoh.common.base.enums.IEnum;
+package com.github.yaogouh.common.exception;
 
 /**
  * 业务异常.
