@@ -1,7 +1,7 @@
 package com.github.yaoguoh.common.elasticsearch.support;
 
-import com.idata.brain.common.elasticsearch.common.page.PageCondition;
-import com.idata.brain.common.elasticsearch.common.sort.Sort;
+import com.github.yaoguoh.common.elasticsearch.common.page.PageCondition;
+import com.github.yaoguoh.common.elasticsearch.common.sort.Sort;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.search.SearchResponse;
 
@@ -11,7 +11,8 @@ import java.io.Serializable;
 /**
  * The interface Ies relationship reposiory.
  *
- * @param <T> the type parameter
+ * @param <T>  the type parameter
+ * @param <ID> the type parameter
  * @author dqq
  */
 public interface IESRelationshipReposiory<T, ID extends Serializable> extends IESRepository<T, ID> {

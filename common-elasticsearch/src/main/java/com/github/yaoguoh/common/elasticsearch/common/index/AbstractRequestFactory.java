@@ -1,7 +1,7 @@
 package com.github.yaoguoh.common.elasticsearch.common.index;
 
-import com.idata.brain.common.elasticsearch.annotation.Document;
-import com.idata.brain.common.elasticsearch.annotation.Id;
+import com.github.yaoguoh.common.elasticsearch.annotation.Document;
+import com.github.yaoguoh.common.elasticsearch.annotation.Id;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 

@@ -1,8 +1,8 @@
 package com.github.yaoguoh.common.elasticsearch.common.index;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.idata.brain.common.elasticsearch.annotation.Ignore;
-import com.idata.brain.common.elasticsearch.annotation.Join;
+import com.github.yaoguoh.common.elasticsearch.annotation.Ignore;
+import com.github.yaoguoh.common.elasticsearch.annotation.Join;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;

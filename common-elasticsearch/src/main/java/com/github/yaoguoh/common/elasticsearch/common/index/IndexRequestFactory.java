@@ -1,6 +1,6 @@
 package com.github.yaoguoh.common.elasticsearch.common.index;
 
-import com.idata.brain.common.elasticsearch.enums.ChildType;
+import com.github.yaoguoh.common.elasticsearch.enums.ChildType;
 import org.elasticsearch.action.index.IndexRequest;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class IndexRequestFactory<T> extends AbstractRequestFactory<T> {
      * @param parentId the parent id
      * @return the map
      */
-    public static Map<String, Object> createJoinMapping(ChildType type, String parentId){
+    public static Map<String, Object> createJoinMapping(ChildType type, String parentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", type.getValue());
         map.put("parent", parentId);
@@ -65,7 +65,7 @@ public class IndexRequestFactory<T> extends AbstractRequestFactory<T> {
      * @param parentId the parent id
      * @return the map
      */
-    public static Map<String, Object> createJoinMapping(String type, String parentId){
+    public static Map<String, Object> createJoinMapping(String type, String parentId) {
         Map<String, Object> map = new HashMap<>();
         map.put("name", type);
         map.put("parent", parentId);

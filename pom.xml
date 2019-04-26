@@ -298,15 +298,15 @@
         </repository>
     </distributionManagement>
     <!-- 开发版推荐使用快照库、正式版删除如下repository配置 -->
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>nexus</id>
             <name>Nexus Mirror</name>
             <url>https://oss.sonatype.org/content/groups/public/</url>
             <snapshots>
-                <enabled>true</enabled><!-- 启用 -->
-                <updatePolicy>always</updatePolicy><!-- 实时更新 -->
+                <enabled>true</enabled>&lt;!&ndash; 启用 &ndash;&gt;
+                <updatePolicy>always</updatePolicy>&lt;!&ndash; 实时更新 &ndash;&gt;
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>-->
 </project>

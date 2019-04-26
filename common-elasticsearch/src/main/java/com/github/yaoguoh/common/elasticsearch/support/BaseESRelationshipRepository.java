@@ -1,8 +1,8 @@
 package com.github.yaoguoh.common.elasticsearch.support;
 
-import com.idata.brain.common.elasticsearch.common.index.SearchRequestFactory;
-import com.idata.brain.common.elasticsearch.common.page.PageCondition;
-import com.idata.brain.common.elasticsearch.common.sort.Sort;
+import com.github.yaoguoh.common.elasticsearch.common.index.SearchRequestFactory;
+import com.github.yaoguoh.common.elasticsearch.common.page.PageCondition;
+import com.github.yaoguoh.common.elasticsearch.common.sort.Sort;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -23,6 +23,8 @@ import java.io.Serializable;
 /**
  * The interface Base es relationship repository.
  *
+ * @param <T>  the type parameter
+ * @param <ID> the type parameter
  * @author dqq
  */
 public abstract class BaseESRelationshipRepository<T, ID extends Serializable> extends BaseESRepository<T, ID>
@@ -48,6 +50,15 @@ public abstract class BaseESRelationshipRepository<T, ID extends Serializable> e
         return client.search(searchRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Find by parent id search response.
+     *
+     * @param pageCondition the page condition
+     * @param t             the t
+     * @param parentType    the parent type
+     * @return the search response
+     * @throws IOException the io exception
+     */
     @Override
     public SearchResponse findByParentId(PageCondition pageCondition, T t, String parentType) throws IOException {
         SearchRequestFactory<T> searchRequestFactory = new SearchRequestFactory<>();
@@ -59,6 +70,16 @@ public abstract class BaseESRelationshipRepository<T, ID extends Serializable> e
         return client.search(searchRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Find by parent id search response.
+     *
+     * @param pageCondition the page condition
+     * @param sort          the sort
+     * @param t             the t
+     * @param parentType    the parent type
+     * @return the search response
+     * @throws IOException the io exception
+     */
     @Override
     public SearchResponse findByParentId(PageCondition pageCondition, Sort sort, T t, String parentType) throws IOException {
         SearchRequestFactory<T> searchRequestFactory = new SearchRequestFactory<>();
@@ -89,6 +110,16 @@ public abstract class BaseESRelationshipRepository<T, ID extends Serializable> e
         return client.search(searchRequest, RequestOptions.DEFAULT);
     }
 
+    /**
+     * Find by parent id query search response.
+     *
+     * @param pageCondition the page condition
+     * @param sort          the sort
+     * @param t             the t
+     * @param childType     the child type
+     * @return the search response
+     * @throws IOException the io exception
+     */
     @Override
     public SearchResponse findByParentIdQuery(PageCondition pageCondition, Sort sort, T t, String childType) throws IOException {
         SearchRequestFactory<T> searchRequestFactory = new SearchRequestFactory<>();
