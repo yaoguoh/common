@@ -100,19 +100,19 @@ public class SwaggerProperties {
         /**
          * 鉴权策略ID，需要和SecurityReferences ID保持一致
          */
-        private String                   name;
+        private String       name;
         /**
          * 需要开启鉴权URL的正则
          */
-        private String                   authRegex              = "^.*$";
+        private String       authRegex    = "^.*$";
         /**
          * 鉴权作用域列表
          */
-        private List<AuthorizationScope> authorizationScopeList = Lists.newArrayList();
+        private List<Scope>  scopeList    = Lists.newArrayList();
         /**
          * 令牌URL列表
          */
-        private List<String>             tokenUrlList           = Lists.newArrayList();
+        private List<String> tokenUrlList = Lists.newArrayList();
     }
 
     /**
@@ -120,7 +120,7 @@ public class SwaggerProperties {
      */
     @Data
     @NoArgsConstructor
-    public static class AuthorizationScope {
+    public static class Scope {
 
         /**
          * 作用域名称
