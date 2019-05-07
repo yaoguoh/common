@@ -19,55 +19,59 @@ public class SwaggerProperties {
     /**
      * 分组名称
      */
-    private String        groupName         = "默认分组";
+    private String          groupName         = "默认分组";
     /**
      * 标题
      */
-    private String        title             = "API";
+    private String          title             = "API";
     /**
      * 描述
      */
-    private String        description       = "RESTFUL API";
+    private String          description       = "RESTFUL API";
     /**
      * 版本
      */
-    private String        version           = "1.0.0";
+    private String          version           = "1.0.0";
     /**
      * 执照
      */
-    private String        license           = "Apache 2.0";
+    private String          license           = "Apache 2.0";
     /**
      * 执照地址
      */
-    private String        licenseUrl        = "http://www.apache.org/licenses/LICENSE-2.0.html";
+    private String          licenseUrl        = "http://www.apache.org/licenses/LICENSE-2.0.html";
     /**
      * 服务条款网址
      */
-    private String        termsOfServiceUrl = "http://www.rsswork.com";
+    private String          termsOfServiceUrl = "http://www.rsswork.com";
     /**
      * host信息
      **/
-    private String        host;
+    private String          host;
     /**
      * swagger会解析的包路径
      **/
-    private String        basePackage;
+    private String          basePackage;
     /**
      * swagger会解析的url规则
      **/
-    private List<String>  basePath          = Lists.newArrayList();
+    private List<String>    basePath          = Lists.newArrayList();
     /**
      * 在basePath基础上需要排除的url规则
      **/
-    private List<String>  excludePath       = Lists.newArrayList();
+    private List<String>    excludePath       = Lists.newArrayList();
     /**
      * 联系人信息
      */
-    private Contact       contact           = new Contact();
+    private Contact         contact           = new Contact();
     /**
      * 全局统一鉴权配置
      **/
-    private Authorization authorization     = new Authorization();
+    private Authorization   authorization     = new Authorization();
+    /**
+     * 自定义参数
+     **/
+    private List<Parameter> parameters        = Lists.newArrayList();
 
     /**
      * The type Contact.
@@ -87,6 +91,35 @@ public class SwaggerProperties {
          * 联系人email
          **/
         private String email;
+    }
+
+    /**
+     * The type Contact.
+     */
+    @Data
+    @NoArgsConstructor
+    public static class Parameter {
+        /**
+         * 参数名称
+         **/
+        private String  name;
+        /**
+         * 描述
+         **/
+        private String  description;
+        /**
+         * 模型参考
+         **/
+        private String  modelRef;
+        /**
+         * 参数类型
+         **/
+        private String  parameterType;
+        /**
+         * 是否必填
+         **/
+        private Boolean required = false;
+
     }
 
 

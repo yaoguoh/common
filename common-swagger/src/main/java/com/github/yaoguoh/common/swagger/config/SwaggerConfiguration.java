@@ -8,8 +8,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -52,6 +54,8 @@ public class SwaggerConfiguration {
 //                .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
                 .paths(PathSelectors.any())
                 .build()
+                //配置自定义参数
+                .globalOperationParameters(this.globalOperationParameters())
                 //配置鉴权信息
                 .securitySchemes(Collections.singletonList(this.securityScheme()))
                 .securityContexts(Collections.singletonList(this.securityContext()))
@@ -135,6 +139,25 @@ public class SwaggerConfiguration {
                 .collect(Collectors.toList());
 
         return new OAuth(authorization.getName(), authorizationScopeList, grantTypes);
+    }
+
+    /**
+     * 配置自定义全局参数
+     */
+    private List<Parameter> globalOperationParameters() {
+
+        final List<SwaggerProperties.Parameter> parameterList = swaggerProperties.getParameters();
+
+        return parameterList.stream().map(parameter -> {
+            ParameterBuilder parameterBuilder = new ParameterBuilder();
+            return parameterBuilder
+                    .name(parameter.getName())
+                    .description(parameter.getDescription())
+                    .modelRef(new ModelRef(parameter.getModelRef()))
+                    .parameterType(parameter.getParameterType())
+                    .required(parameter.getRequired())
+                    .build();
+        }).collect(Collectors.toList());
     }
 
     /**
