@@ -1,10 +1,10 @@
 package com.github.yaoguoh.common.swagger.properties;
 
-import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,11 +55,11 @@ public class SwaggerProperties {
     /**
      * swagger会解析的url规则
      **/
-    private List<String>    basePath          = Lists.newArrayList();
+    private List<String>    basePath          = new ArrayList<>();
     /**
      * 在basePath基础上需要排除的url规则
      **/
-    private List<String>    excludePath       = Lists.newArrayList();
+    private List<String>    excludePath       = new ArrayList<>();
     /**
      * 联系人信息
      */
@@ -71,7 +71,7 @@ public class SwaggerProperties {
     /**
      * 自定义参数
      **/
-    private List<Parameter> parameters        = Lists.newArrayList();
+    private List<Parameter> parameters        = new ArrayList<>();
 
     /**
      * The type Contact.
@@ -141,11 +141,11 @@ public class SwaggerProperties {
         /**
          * 鉴权作用域列表
          */
-        private List<Scope>  scopeList    = Lists.newArrayList();
+        private List<Scope>  scopeList    = new ArrayList<>();
         /**
          * 令牌URL列表
          */
-        private List<String> tokenUrlList = Lists.newArrayList();
+        private List<String> tokenUrlList = new ArrayList<>();
     }
 
     /**

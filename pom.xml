@@ -36,7 +36,6 @@
 
     <modules>
         <module>common-util</module>
-        <module>common-elasticsearch</module>
         <module>common-jpa</module>
         <module>common-redis</module>
         <module>common-spring-cloud</module>
