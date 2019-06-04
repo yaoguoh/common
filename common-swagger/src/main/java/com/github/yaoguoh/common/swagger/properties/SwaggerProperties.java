@@ -43,7 +43,7 @@ public class SwaggerProperties {
     /**
      * 服务条款网址
      */
-    private String          termsOfServiceUrl = "http://www.rsswork.com";
+    private String          termsOfServiceUrl = "";
     /**
      * host信息
      **/
