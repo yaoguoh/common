@@ -305,7 +305,7 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-snapshots</id> <!-- 等于Settings.xml中server的id值。-->
+            <id>sonatype-nexus-staging</id> <!-- 等于Settings.xml中server的id值。-->
             <name>oss Staging Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
