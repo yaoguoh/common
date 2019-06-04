@@ -64,7 +64,7 @@
         <logstash.version>5.2</logstash.version>
         <hutool.version>4.5.10</hutool.version>
         <jwt.version>0.9.1</jwt.version>
-        <jib.version>1.0.2</jib.version>
+        <jib.version>1.2.0</jib.version>
     </properties>
 
     <dependencyManagement>
@@ -244,7 +244,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -254,7 +254,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--  必须配置 javadoc-->
+            <!-- 必须配置 javadoc-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -268,11 +268,11 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--  必须配置 sonatype-->
+            <!-- 必须配置 sonatype-->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
+                <version>1.6.8</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId> <!-- Settings中server的id值。-->
