@@ -1,6 +1,6 @@
-package com.idata.brain.common.elasticsearch.config;
+package com.github.yaoguoh.common.elasticsearch.config;
 
-import com.idata.brain.common.elasticsearch.properties.ElasticsearchProperties;
+import com.github.yaoguoh.common.elasticsearch.properties.ElasticsearchProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;

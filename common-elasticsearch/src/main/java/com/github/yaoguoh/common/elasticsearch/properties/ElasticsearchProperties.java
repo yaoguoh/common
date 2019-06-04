@@ -1,4 +1,4 @@
-package com.idata.brain.common.elasticsearch.properties;
+package com.github.yaoguoh.common.elasticsearch.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
