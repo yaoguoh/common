@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.github.yaoguoh</groupId>
-        <artifactId>common-dependencies</artifactId>
+        <artifactId>common</artifactId>
         <version>2.1.5-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -23,13 +23,6 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
-        <!--Lombok-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!-- swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -38,6 +31,13 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
