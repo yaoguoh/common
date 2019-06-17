@@ -16,9 +16,9 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.net.ssl.SSLContext;
+import java.io.File;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -50,7 +50,7 @@ public class RestHighLevelClientConfiguration {
 
         try {
             final SSLContext sslContext = SSLContexts.custom()
-                    .loadTrustMaterial(new ClassPathResource(elasticsearchProperties.getKeystore()).getFile(), elasticsearchProperties.getKeystorePassword().toCharArray(), new TrustSelfSignedStrategy())
+                    .loadTrustMaterial(new File(elasticsearchProperties.getKeystore()), elasticsearchProperties.getKeystorePassword().toCharArray(), new TrustSelfSignedStrategy())
                     .build();
 
             RestClientBuilder restClientBuilder =
