@@ -4,6 +4,7 @@ import com.github.yaogouh.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -217,5 +218,28 @@ public abstract class BaseService<T, ID> implements IService<T, ID> {
     public Page<T> findAllByExampleAndPageable(Example<T> example, Pageable pageable) {
         log.info("findAllByExampleAndPageable - 根据实体属性和Pageable进行分页查询. example={}, pageable={}", example, pageable);
         return jpaRepository.findAll(example, pageable);
+    }
+
+    /**
+     * Find all by example like and pageable page. 通过实体属性模糊查询（分页）
+     *
+     * @param pageable the pageable
+     * @return the page
+     */
+    @Override
+    public Page<T> findAllByExampleLikeAndPageable(T domain, Pageable pageable) {
+
+        //创建匹配器，即如何使用查询条件
+        //构建对象
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                //改变默认字符串匹配方式：模糊查询
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                //改变默认大小写忽略方式：忽略大小写
+                .withIgnoreCase(true);
+
+        //创建实例
+        Example<T> systemExample = Example.of(domain, matcher);
+        //返回查询结果
+        return jpaRepository.findAll(systemExample, pageable);
     }
 }
