@@ -228,6 +228,7 @@ public abstract class BaseService<T, ID> implements IService<T, ID> {
      */
     @Override
     public Page<T> findAllByExampleLikeAndPageable(T domain, Pageable pageable) {
+        log.info("findAllByExampleLikeAndPageable - 通过实体属性模糊查询（分页）. domain={}, pageable={}", domain, pageable);
 
         //创建匹配器，即如何使用查询条件
         //构建对象

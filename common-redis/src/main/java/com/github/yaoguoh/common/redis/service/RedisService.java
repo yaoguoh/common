@@ -1,6 +1,7 @@
 package com.github.yaoguoh.common.redis.service;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,11 +20,18 @@ public interface RedisService {
     String getByKey(@NotNull String key);
 
     /**
-     * Delete key. 通过 key 删除
+     * Delete . 通过 key 删除
      *
      * @param key the key
      */
-    void deleteByKey(@NotNull String key);
+    void delete(@NotNull String key);
+
+    /**
+     * Delete. 通过 key集合 删除
+     *
+     * @param keys the keys
+     */
+    void delete(@NotNull Collection<String> keys);
 
     /**
      * Set.

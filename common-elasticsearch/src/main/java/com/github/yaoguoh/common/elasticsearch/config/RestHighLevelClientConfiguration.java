@@ -32,8 +32,8 @@ import java.security.cert.CertificateException;
  */
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(ElasticsearchProperties.class)
 @AllArgsConstructor
+@EnableConfigurationProperties(ElasticsearchProperties.class)
 public class RestHighLevelClientConfiguration {
 
     private final ElasticsearchProperties elasticsearchProperties;
@@ -47,7 +47,6 @@ public class RestHighLevelClientConfiguration {
     public RestHighLevelClient restHighLevelClient() {
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(elasticsearchProperties.getXpackUsername(), elasticsearchProperties.getXpackPassword()));
-
         try {
             final SSLContext sslContext = SSLContexts.custom()
                     .loadTrustMaterial(new File(elasticsearchProperties.getKeystore()), elasticsearchProperties.getKeystorePassword().toCharArray(), new TrustSelfSignedStrategy())

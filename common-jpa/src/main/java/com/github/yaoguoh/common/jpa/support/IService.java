@@ -147,7 +147,6 @@ public interface IService<T, ID> {
      */
     Page<T> findAllByExampleAndPageable(Example<T> example, Pageable pageable);
 
-
     /**
      * Find all by example like and pageable page. 通过实体属性模糊查询（分页）
      *
@@ -156,4 +155,5 @@ public interface IService<T, ID> {
      * @return the page
      */
     Page<T> findAllByExampleLikeAndPageable(T domain, Pageable pageable);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,9 +31,15 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void deleteByKey(@NotNull String key) {
+    public void delete(@NotNull String key) {
         stringRedisTemplate.delete(key);
-        log.info("deleteByKey. [OK] key={}", key);
+        log.info("delete. [OK] key={}", key);
+    }
+
+    @Override
+    public void delete(@NotNull Collection<String> keys) {
+        stringRedisTemplate.delete(keys);
+        log.info("delete. [OK] keys={}", keys);
     }
 
     @Override
