@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.1.8.RELEASE</version>
+    <version>2.2.0.RELEASE</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -39,21 +39,19 @@
         <module>common-util</module>
         <module>common-jpa</module>
         <module>common-redis</module>
+        <module>common-swagger</module>
+        <module>common-exception</module>
         <module>common-spring-cloud</module>
         <module>common-elasticsearch</module>
-        <module>common-exception</module>
-        <module>common-swagger</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <common.version>2.1.8.RELEASE</common.version>
-        <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <common.version>2.2.0.RELEASE</common.version>
+        <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
-        <jasypt.version>2.1.1</jasypt.version>
         <commons-io.version>2.6</commons-io.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
@@ -66,8 +64,10 @@
         <swagger.version>2.9.2</swagger.version>
         <alibaba-fastjson.version>1.2.60</alibaba-fastjson.version>
         <guava.version>28.1-jre</guava.version>
+        <hutool.version>5.0.3</hutool.version>
+        <swagger.version>2.9.2</swagger.version>
         <logstash.version>6.2</logstash.version>
-        <hutool.version>4.6.4</hutool.version>
+        <jasypt.version>2.1.1</jasypt.version>
         <jwt.version>0.9.1</jwt.version>
         <jib.version>1.5.0</jib.version>
     </properties>
