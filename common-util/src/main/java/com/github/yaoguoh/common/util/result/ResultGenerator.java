@@ -9,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ResultGenerator {
 
-	private ResultGenerator() {
-	}
+    private ResultGenerator() {
+    }
 
     /**
      * Wrap result.
@@ -22,8 +22,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> wrap(int code, String message, E o) {
-		return new Result<>(code, message, o);
-	}
+        return new Result<>(code, message, o);
+    }
 
     /**
      * Wrap result.
@@ -34,8 +34,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> wrap(int code, String message) {
-		return wrap(code, message, null);
-	}
+        return wrap(code, message, null);
+    }
 
     /**
      * Wrap result.
@@ -45,8 +45,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> wrap(int code) {
-		return wrap(code, null);
-	}
+        return wrap(code, null);
+    }
 
     /**
      * Wrap result.
@@ -56,8 +56,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> wrap(Exception e) {
-		return new Result<>(Result.ERROR_CODE, e.getMessage());
-	}
+        return new Result<>(Result.ERROR_CODE, e.getMessage());
+    }
 
     /**
      * Un wrap e.
@@ -67,8 +67,8 @@ public class ResultGenerator {
      * @return the e
      */
     public static <E> E unWrap(Result<E> result) {
-		return result.getResult();
-	}
+        return result.getResult();
+    }
 
     /**
      * Illegal argument result.
@@ -77,13 +77,14 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> illegalArgument() {
-		return wrap(Result.ILLEGAL_ARGUMENT_CODE_, Result.ILLEGAL_ARGUMENT_MESSAGE);
-	}
+        return wrap(Result.ILLEGAL_ARGUMENT_CODE_, Result.ILLEGAL_ARGUMENT_MESSAGE);
+    }
 
     /**
      * Illegal argument result.
      *
-     * @param <E> the type parameter
+     * @param <E>     the type parameter
+     * @param message the message
      * @return the result
      */
     public static <E> Result<E> illegalArgument(String message) {
@@ -97,8 +98,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> error() {
-		return wrap(Result.ERROR_CODE, Result.ERROR_MESSAGE);
-	}
+        return wrap(Result.ERROR_CODE, Result.ERROR_MESSAGE);
+    }
 
 
     /**
@@ -109,8 +110,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> error(String message) {
-		return wrap(Result.ERROR_CODE, StringUtils.isBlank(message) ? Result.ERROR_MESSAGE : message);
-	}
+        return wrap(Result.ERROR_CODE, StringUtils.isBlank(message) ? Result.ERROR_MESSAGE : message);
+    }
 
     /**
      * Ok result.
@@ -119,8 +120,8 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> ok() {
-		return new Result<>();
-	}
+        return new Result<>();
+    }
 
     /**
      * Ok result.
@@ -130,6 +131,6 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> ok(E o) {
-		return new Result<>(Result.SUCCESS_CODE, Result.SUCCESS_MESSAGE, o);
-	}
+        return new Result<>(Result.SUCCESS_CODE, Result.SUCCESS_MESSAGE, o);
+    }
 }

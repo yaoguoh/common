@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
  */
 public class BindingResultUtil {
 
+    /**
+     * Validate binding result.
+     *
+     * @param bindingResult the binding result
+     */
     public static void validateBindingResult(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new IllegalArgumentException(
