@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.2.2.RELEASE</version>
+    <version>2.2.5.RELEASE</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -48,8 +48,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>2.2.2.RELEASE</common.version>
-        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+        <common.version>2.2.5.RELEASE</common.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <spring-boot-admin.version>2.2.0</spring-boot-admin.version>
         <commons-io.version>2.6</commons-io.version>
