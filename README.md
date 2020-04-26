@@ -5,7 +5,7 @@
     <dependency>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
