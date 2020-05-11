@@ -3,8 +3,8 @@ package com.github.yaoguoh.common.jpa.support;
 import com.github.yaoguoh.common.jpa.domain.BaseDomain;
 import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -35,10 +35,9 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param id the id
      * @return the t
      */
-    @GetMapping("/{id}")
     @ApiOperation(value = "根据ID字段进行查询")
-    @ApiImplicitParam(name = "id", value = "实体ID", required = true, dataType = "String", paramType = "path")
-    public Result<Object> findById(@PathVariable ID id) {
+    @GetMapping("/{id}")
+    public Result<Object> findById(@ApiParam(name = "id", value = "实体ID", required = true, example = "0") @PathVariable ID id) {
         log.info("findById - 通过Id查询实体. id={}", id);
         return ResultGenerator.ok(service.findById(id));
     }
@@ -49,9 +48,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param example the example
      * @return the t
      */
-    @GetMapping("/example")
     @ApiOperation(value = "根据实体中的属性进行查询")
-    @ApiImplicitParam(name = "example", value = "实体属性", required = true)
+    @GetMapping("/example")
     public Result<Object> findOneByExample(T example) {
         log.info("findOneByExample - 根据实体中的属性进行查询. example={}", example);
         return ResultGenerator.ok(service.findOneByExample(Example.of(example)));
@@ -62,8 +60,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      *
      * @return the list
      */
-    @GetMapping("/all")
     @ApiOperation(value = "查询全部")
+    @GetMapping("/all")
     public Result<List<T>> findAll() {
         log.info("findAll - 查询全部结果");
         return ResultGenerator.ok(service.findAll());
@@ -75,12 +73,11 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param example the example
      * @return the list
      */
-    @GetMapping("/list/by/example")
     @ApiOperation(value = "根据实体中的属性进行查询")
-    @ApiImplicitParam(name = "example", value = "实体属性", required = true)
-    public Result<List<T>> findAllByExample(Example<T> example) {
+    @GetMapping("/list/by/example")
+    public Result<List<T>> findAllByExample(T example) {
         log.info("findAllByExample - 根据实体中的属性值进行查询. ");
-        return ResultGenerator.ok(service.findAllByExample(example));
+        return ResultGenerator.ok(service.findAllByExample(Example.of(example)));
     }
 
     /**
@@ -89,9 +86,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param list the list
      * @return the list
      */
-    @GetMapping("/list/by/id")
     @ApiOperation(value = "根据实体ID集合进行查询")
-    @ApiImplicitParam(name = "example", value = "实体属性", required = true)
+    @GetMapping("/list/by/id")
     public Result<List<T>> findAllByIdList(List<ID> list) {
         log.info("findAllByIdList - 根据实体ID集合进行查询. list={}", list);
 
@@ -103,8 +99,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      *
      * @return the int
      */
-    @GetMapping("/count")
     @ApiOperation(value = "查询总数")
+    @GetMapping("/count")
     public Result<Long> findCount() {
         log.info("findCount - 查询总数. ");
 
@@ -117,13 +113,12 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param example the example
      * @return the int
      */
-    @GetMapping("/count/by/example")
     @ApiOperation(value = "根据实体中的属性查询总数")
-    @ApiImplicitParam(name = "example", value = "实体属性", required = true)
-    public Result<Long> findCountByExample(Example<T> example) {
+    @GetMapping("/count/by/example")
+    public Result<Long> findCountByExample(T example) {
         log.info("findCountByExample - 根据实体中的属性查询总数, 查询条件使用等号. example={}", example);
 
-        return ResultGenerator.ok(service.findCountByExample(example));
+        return ResultGenerator.ok(service.findCountByExample(Example.of(example)));
     }
 
     /**
@@ -132,10 +127,9 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param domain the domain
      * @return the int
      */
+    @ApiOperation(value = "新建实体")
     @PostMapping(value = "/create")
     @ResponseStatus(value = HttpStatus.CREATED)
-    @ApiOperation(value = "新建实体")
-    @ApiImplicitParam(name = "domain", value = "实体", required = true)
     public Result<Object> save(@RequestBody T domain) {
         log.info("save - 新建实体. domain={}", domain);
 
@@ -149,10 +143,9 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param list the list
      * @return the int
      */
+    @ApiOperation(value = "批量新建实体")
     @PostMapping(value = "/batch/creat")
     @ResponseStatus(value = HttpStatus.CREATED)
-    @ApiOperation(value = "批量新建实体")
-    @ApiImplicitParam(name = "list", value = "实体集合", required = true)
     public Result<Object> batchSave(@RequestBody List<T> list) {
         log.info("batchSave - 批量保存. list={}", list);
 
@@ -166,9 +159,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param domain the domain
      * @return the int
      */
-    @PutMapping(value = "/update")
     @ApiOperation(value = "更新实体")
-    @ApiImplicitParam(name = "domain", value = "实体", required = true)
+    @PutMapping(value = "/update")
     public Result<Object> update(@RequestBody T domain) {
         log.info("update - 更新实体. domain={}", domain);
 
@@ -183,10 +175,9 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param id the id
      * @return the wrapper
      */
-    @DeleteMapping(value = "/{id}")
     @ApiOperation(value = "通过ID删除实体")
-    @ApiImplicitParam(name = "id", value = "实体ID", required = true, dataType = "String", paramType = "path")
-    public Result<Object> deleteById(@PathVariable ID id) {
+    @DeleteMapping(value = "/{id}")
+    public Result<Object> deleteById(@ApiParam(name = "id", value = "实体ID", required = true, example = "0") @PathVariable ID id) {
         log.info("deleteById - 根据主键字段进行删除. id={}", id);
         service.deleteById(id);
         return ResultGenerator.ok();
@@ -198,9 +189,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param list the list
      * @return the wrapper
      */
-    @DeleteMapping(value = "/list")
     @ApiOperation(value = "通过ID集合批量删除")
-    @ApiImplicitParam(name = "id", value = "实体ID", required = true)
+    @DeleteMapping(value = "/list")
     public Result<Object> deleteById(@RequestBody List<ID> list) {
         log.info("deleteById - 通过ID集合批量删除. list={}", list);
         service.deleteByIdList(list);
@@ -213,9 +203,8 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param pageable the pageable
      * @return the page
      */
-    @GetMapping(value = "/list/by/pageable")
     @ApiOperation(value = "根据Pageable进行分页查询")
-    @ApiImplicitParam(name = "pageable", value = "分页条件", required = true)
+    @GetMapping(value = "/list/by/pageable")
     public Result<Page<T>> findByPageable(Pageable pageable) {
         log.info("findAllByPageable - 根据Pageable进行分页查询. pageable={}", pageable);
 
@@ -229,12 +218,11 @@ public abstract class BaseController<T extends BaseDomain, ID extends Serializab
      * @param pageable the pageable
      * @return the page
      */
-    @GetMapping(value = "/list/by/example/pageable")
     @ApiOperation(value = "根据实体属性和Pageable进行分页查询")
-    @ApiImplicitParam(name = "pageable", value = "分页条件", required = true)
-    public Result<Page<T>> findByExampleAndPageable(Example<T> example, Pageable pageable) {
+    @GetMapping(value = "/list/by/example/pageable")
+    public Result<Page<T>> findByExampleAndPageable(T example, Pageable pageable) {
         log.info("findAllByExampleAndPageable - 根据实体属性和Pageable进行分页查询. example={}, pageable={}", example, pageable);
 
-        return ResultGenerator.ok(service.findAllByExampleAndPageable(example, pageable));
+        return ResultGenerator.ok(service.findAllByExampleAndPageable(Example.of(example), pageable));
     }
 }

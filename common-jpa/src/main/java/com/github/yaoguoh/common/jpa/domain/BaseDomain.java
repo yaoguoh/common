@@ -1,9 +1,8 @@
 package com.github.yaoguoh.common.jpa.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -27,7 +26,8 @@ public abstract class BaseDomain implements Serializable {
      * The Id.
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @ApiModelProperty(value = "实体ID", example = "0")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**
@@ -39,24 +39,10 @@ public abstract class BaseDomain implements Serializable {
     protected Date createdDate;
 
     /**
-     * 创建者
-     */
-    @Column(name = "created_by", updatable = false)
-    @CreatedBy
-    protected String createdBy;
-
-    /**
      * 最后修改时间
      */
     @Column(name = "last_modified_date")
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     protected Date lastModifiedDate;
-
-    /**
-     * 最后修改者
-     */
-    @Column(name = "last_modified_by")
-    @LastModifiedBy
-    protected String lastModifiedBy;
 }
