@@ -3,6 +3,8 @@ package com.github.yaoguoh.common.jpa.support;
 import com.github.yaoguoh.common.jpa.domain.BaseDomain;
 import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.io.Serializable;
 import java.util.List;
@@ -129,7 +132,17 @@ public abstract class BaseQueryController<T extends BaseDomain, I extends Serial
      */
     @ApiOperation(value = "根据Pageable进行分页查询")
     @GetMapping(value = "/list/by/pageable")
-    public Result<Page<T>> findByPageable(Pageable pageable) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
+                    value = "要检索的结果页(从0开始).", defaultValue = "0"),
+            @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+                    value = "每页记录数.", defaultValue = "20"),
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                    value = "排序的标准格式格式(属性,asc|desc). " +
+                            "默认排序顺序为升序. " +
+                            "支持多排序条件.")
+    })
+    public Result<Page<T>> findByPageable(@ApiIgnore("忽略，因为`swagger`参数显示界面错误.") Pageable pageable) {
         log.info("findAllByPageable - 根据Pageable进行分页查询. pageable={}", pageable);
 
         return ResultGenerator.ok(service.findAllByPageable(pageable));
@@ -144,7 +157,17 @@ public abstract class BaseQueryController<T extends BaseDomain, I extends Serial
      */
     @ApiOperation(value = "根据实体属性和Pageable进行分页查询")
     @GetMapping(value = "/list/by/example/pageable")
-    public Result<Page<T>> findByExampleAndPageable(T example, Pageable pageable) {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
+                    value = "要检索的结果页(从0开始).", defaultValue = "0"),
+            @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+                    value = "每页记录数.", defaultValue = "20"),
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                    value = "排序的标准格式格式(属性,asc|desc). " +
+                            "默认排序顺序为升序. " +
+                            "支持多排序条件.")
+    })
+    public Result<Page<T>> findByExampleAndPageable(T example, @ApiIgnore("忽略，因为`swagger`参数显示界面错误.") Pageable pageable) {
         log.info("findAllByExampleAndPageable - 根据实体属性和Pageable进行分页查询. example={}, pageable={}", example, pageable);
 
         return ResultGenerator.ok(service.findAllByExampleAndPageable(Example.of(example), pageable));
