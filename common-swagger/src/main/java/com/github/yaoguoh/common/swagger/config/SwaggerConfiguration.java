@@ -1,6 +1,7 @@
 package com.github.yaoguoh.common.swagger.config;
 
 import com.github.yaoguoh.common.swagger.properties.SwaggerProperties;
+import com.google.common.net.HttpHeaders;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,15 +9,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
+import springfox.documentation.builders.RequestParameterBuilder;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
 
 /**
  * The type Swagger auto configuration.
+ * on @{@link EnableOpenApi} @EnableOpenApi  Indicates that Swagger support should be enabled. （启用swagger）
  *
  * @author WYG
  */
 @Slf4j
-@EnableSwagger2
 @Profile({"dev", "test"})
+@EnableOpenApi
 @AllArgsConstructor
 @EnableConfigurationProperties(SwaggerProperties.class)
 public class SwaggerConfiguration {
@@ -43,7 +44,7 @@ public class SwaggerConfiguration {
      */
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
                 .groupName(swaggerProperties.getGroupName())
                 .host(swaggerProperties.getHost())
                 .apiInfo(apiInfo())
@@ -55,7 +56,7 @@ public class SwaggerConfiguration {
                 .paths(PathSelectors.any())
                 .build()
                 //配置自定义参数
-                .globalOperationParameters(this.globalOperationParameters())
+                .globalRequestParameters(this.globalOperationParameters())
                 //配置鉴权信息
                 .securitySchemes(Collections.singletonList(this.securityScheme()))
                 .securityContexts(Collections.singletonList(this.securityContext()))
@@ -84,7 +85,6 @@ public class SwaggerConfiguration {
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(Collections.singletonList(this.defaultAuth()))
-                .forPaths(PathSelectors.any())
                 .build();
     }
 
@@ -98,11 +98,11 @@ public class SwaggerConfiguration {
         final List<SwaggerProperties.Scope> scopes = authorization.getScopeList();
 
         if (scopes.isEmpty()) {
-            AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+            AuthorizationScope   authorizationScope  = new AuthorizationScope("global", "accessEverything");
             AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
             authorizationScopes[0] = authorizationScope;
             return SecurityReference.builder()
-                    .reference("Authorization")
+                    .reference(HttpHeaders.AUTHORIZATION)
                     .scopes(authorizationScopes)
                     .build();
         }
@@ -127,7 +127,7 @@ public class SwaggerConfiguration {
         final List<SwaggerProperties.Scope> scopes = authorization.getScopeList();
 
         if (scopes.isEmpty()) {
-            return new ApiKey("Authorization", "Authorization", "header");
+            return new ApiKey(HttpHeaders.AUTHORIZATION, HttpHeaders.AUTHORIZATION, "header");
         }
 
         List<AuthorizationScope> authorizationScopeList = scopes.stream()
@@ -144,17 +144,15 @@ public class SwaggerConfiguration {
     /**
      * 配置自定义全局参数
      */
-    private List<Parameter> globalOperationParameters() {
+    private List<RequestParameter> globalOperationParameters() {
 
-        final List<SwaggerProperties.Parameter> parameterList = swaggerProperties.getParameters();
+        final List<SwaggerProperties.RequestParameter> parameterList = swaggerProperties.getRequestParameters();
 
         return parameterList.stream().map(parameter -> {
-            ParameterBuilder parameterBuilder = new ParameterBuilder();
+            RequestParameterBuilder parameterBuilder = new RequestParameterBuilder();
             return parameterBuilder
                     .name(parameter.getName())
                     .description(parameter.getDescription())
-                    .modelRef(new ModelRef(parameter.getModelRef()))
-                    .parameterType(parameter.getParameterType())
                     .required(parameter.getRequired())
                     .build();
         }).collect(Collectors.toList());

@@ -1,10 +1,10 @@
 package com.github.yaoguoh.common.swagger.properties;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class SwaggerProperties {
     /**
      * 版本
      */
-    private String          version           = "1.0.0";
+    private String          version           = "3.0";
     /**
      * 执照
      */
@@ -43,7 +43,7 @@ public class SwaggerProperties {
     /**
      * 服务条款网址
      */
-    private String          termsOfServiceUrl = "";
+    private String          termsOfServiceUrl = "http://www.rsswork.com";
     /**
      * host信息
      **/
@@ -55,11 +55,11 @@ public class SwaggerProperties {
     /**
      * swagger会解析的url规则
      **/
-    private List<String>    basePath          = new ArrayList<>();
+    private List<String>    basePath          = Lists.newArrayList();
     /**
      * 在basePath基础上需要排除的url规则
      **/
-    private List<String>    excludePath       = new ArrayList<>();
+    private List<String>    excludePath       = Lists.newArrayList();
     /**
      * 联系人信息
      */
@@ -71,7 +71,7 @@ public class SwaggerProperties {
     /**
      * 自定义参数
      **/
-    private List<Parameter> parameters        = new ArrayList<>();
+    private List<RequestParameter> requestParameters = Lists.newArrayList();
 
     /**
      * The type Contact.
@@ -98,7 +98,7 @@ public class SwaggerProperties {
      */
     @Data
     @NoArgsConstructor
-    public static class Parameter {
+    public static class RequestParameter {
         /**
          * 参数名称
          **/
@@ -108,18 +108,9 @@ public class SwaggerProperties {
          **/
         private String  description;
         /**
-         * 模型参考
-         **/
-        private String  modelRef;
-        /**
-         * 参数类型
-         **/
-        private String  parameterType;
-        /**
          * 是否必填
          **/
         private Boolean required = false;
-
     }
 
 
@@ -141,11 +132,11 @@ public class SwaggerProperties {
         /**
          * 鉴权作用域列表
          */
-        private List<Scope>  scopeList    = new ArrayList<>();
+        private List<Scope>  scopeList    = Lists.newArrayList();
         /**
          * 令牌URL列表
          */
-        private List<String> tokenUrlList = new ArrayList<>();
+        private List<String> tokenUrlList = Lists.newArrayList();
     }
 
     /**
