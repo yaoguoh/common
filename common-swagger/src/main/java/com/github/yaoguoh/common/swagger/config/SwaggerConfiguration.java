@@ -2,7 +2,6 @@ package com.github.yaoguoh.common.swagger.config;
 
 import com.github.yaoguoh.common.swagger.properties.SwaggerProperties;
 import com.google.common.net.HttpHeaders;
-import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -44,23 +43,24 @@ public class SwaggerConfiguration {
      */
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.OAS_30)
+        return new Docket(DocumentationType.OAS_30).pathMapping("/")
                 .groupName(swaggerProperties.getGroupName())
-                .host(swaggerProperties.getHost())
+                // 定义是否开启swagger，false为关闭，可以通过变量控制
+                .enable(swaggerProperties.getEnable())
+                // 将api的元信息设置为包含在json ResourceListing响应中。
                 .apiInfo(apiInfo())
+                // 接口调试地址
+                .host(swaggerProperties.getHost())
+                // 选择哪些接口作为swagger的doc发布
                 .select()
-                //扫描所有有注解的api，
-//                .apis(RequestHandlerSelectors.any()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-//                .paths(Predicates.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 //配置自定义参数
                 .globalRequestParameters(this.globalOperationParameters())
                 //配置鉴权信息
-                .securitySchemes(Collections.singletonList(this.securityScheme()))
-                .securityContexts(Collections.singletonList(this.securityContext()))
-                .pathMapping("/");
+                .securitySchemes(this.securityScheme())
+                .securityContexts(this.securityContext());
     }
 
 
@@ -80,37 +80,52 @@ public class SwaggerConfiguration {
     }
 
     /**
+     * 认证方式配置
+     */
+    private List<SecurityScheme> securityScheme() {
+        final SwaggerProperties.Authorization            authorization       = swaggerProperties.getAuthorization();
+        final List<SwaggerProperties.AuthorizationScope> authorizationScopes = authorization.getAuthorizationScopes();
+        if (authorizationScopes.isEmpty()) {
+            return Collections.singletonList(new ApiKey(HttpHeaders.AUTHORIZATION, HttpHeaders.AUTHORIZATION, "header"));
+        }
+        List<AuthorizationScope> authorizationAuthorizationScopeList = authorizationScopes.stream()
+                .map(authorizationScope -> new AuthorizationScope(authorizationScope.getScope(), authorizationScope.getDescription()))
+                .collect(Collectors.toList());
+        List<GrantType> grantTypes = authorization.getTokenUrls().stream()
+                .map(ResourceOwnerPasswordCredentialsGrant::new)
+                .collect(Collectors.toList());
+        return Collections.singletonList(new OAuth(authorization.getName(), authorizationAuthorizationScopeList, grantTypes));
+    }
+
+    /**
      * 配置默认的全局鉴权策略的开关，通过正则表达式进行匹配；默认匹配所有URL
      */
-    private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                .securityReferences(Collections.singletonList(this.defaultAuth()))
-                .build();
+    private List<SecurityContext> securityContext() {
+        return Collections.singletonList(
+                SecurityContext.builder()
+                        .securityReferences(Collections.singletonList(this.defaultAuth()))
+                        .build()
+        );
     }
 
     /**
      * 默认的全局鉴权策略
      */
     private SecurityReference defaultAuth() {
-
-        final SwaggerProperties.Authorization authorization = swaggerProperties.getAuthorization();
-
-        final List<SwaggerProperties.Scope> scopes = authorization.getScopeList();
-
+        final SwaggerProperties.Authorization            authorization = swaggerProperties.getAuthorization();
+        final List<SwaggerProperties.AuthorizationScope> scopes        = authorization.getAuthorizationScopes();
         if (scopes.isEmpty()) {
-            AuthorizationScope   authorizationScope  = new AuthorizationScope("global", "accessEverything");
-            AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-            authorizationScopes[0] = authorizationScope;
+            AuthorizationScope   authorizationScope               = new AuthorizationScope("global", "accessEverything");
+            AuthorizationScope[] authorizationAuthorizationScopes = new AuthorizationScope[1];
+            authorizationAuthorizationScopes[0] = authorizationScope;
             return SecurityReference.builder()
                     .reference(HttpHeaders.AUTHORIZATION)
-                    .scopes(authorizationScopes)
+                    .scopes(authorizationAuthorizationScopes)
                     .build();
         }
-
         AuthorizationScope[] authorizationScopes = scopes.stream()
-                .map(scope -> new AuthorizationScope(scope.getScope(), scope.getDescription()))
+                .map(authorizationScope -> new AuthorizationScope(authorizationScope.getScope(), authorizationScope.getDescription()))
                 .toArray(AuthorizationScope[]::new);
-
         return SecurityReference.builder()
                 .reference(authorization.getName())
                 .scopes(authorizationScopes)
@@ -118,36 +133,10 @@ public class SwaggerConfiguration {
     }
 
     /**
-     * 认证方式配置
-     */
-    private SecurityScheme securityScheme() {
-
-        final SwaggerProperties.Authorization authorization = swaggerProperties.getAuthorization();
-
-        final List<SwaggerProperties.Scope> scopes = authorization.getScopeList();
-
-        if (scopes.isEmpty()) {
-            return new ApiKey(HttpHeaders.AUTHORIZATION, HttpHeaders.AUTHORIZATION, "header");
-        }
-
-        List<AuthorizationScope> authorizationScopeList = scopes.stream()
-                .map(scope -> new AuthorizationScope(scope.getScope(), scope.getDescription()))
-                .collect(Collectors.toList());
-
-        List<GrantType> grantTypes = authorization.getTokenUrlList().stream()
-                .map(ResourceOwnerPasswordCredentialsGrant::new)
-                .collect(Collectors.toList());
-
-        return new OAuth(authorization.getName(), authorizationScopeList, grantTypes);
-    }
-
-    /**
      * 配置自定义全局参数
      */
     private List<RequestParameter> globalOperationParameters() {
-
         final List<SwaggerProperties.RequestParameter> parameterList = swaggerProperties.getRequestParameters();
-
         return parameterList.stream().map(parameter -> {
             RequestParameterBuilder parameterBuilder = new RequestParameterBuilder();
             return parameterBuilder
