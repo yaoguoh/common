@@ -23,7 +23,7 @@ public class SwaggerProperties {
     /**
      * 分组名称
      */
-    private String                 groupName         = "默认分组";
+    private String                 groupName         = "default";
     /**
      * 标题
      */
