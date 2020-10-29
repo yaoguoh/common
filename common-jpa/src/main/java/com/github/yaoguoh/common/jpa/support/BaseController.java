@@ -1,6 +1,5 @@
 package com.github.yaoguoh.common.jpa.support;
 
-import com.github.yaoguoh.common.jpa.domain.BaseDomain;
 import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
 import io.swagger.annotations.ApiOperation;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,7 +19,7 @@ import java.util.List;
  * @author WYG
  */
 @Slf4j
-public abstract class BaseController<T extends BaseDomain, I extends Serializable> extends BaseQueryController<T, I> {
+public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
 
     @Autowired
     private IService<T, I> service;

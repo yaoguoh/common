@@ -1,6 +1,5 @@
 package com.github.yaoguoh.common.jpa.support;
 
-import com.github.yaoguoh.common.jpa.domain.BaseDomain;
 import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -27,7 +25,7 @@ import java.util.List;
  * @author WYG
  */
 @Slf4j
-public abstract class BaseQueryController<T extends BaseDomain, I extends Serializable> {
+public abstract class BaseQueryController<T, I> {
 
     @Autowired
     private IService<T, I> service;
