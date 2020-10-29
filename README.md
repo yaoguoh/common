@@ -44,7 +44,7 @@ public class MessageController {
      */
     @ApiOperation(value = "根据消息ID查询消息信息")
     @GetMapping(value = "/{messageId}")
-    public Result<MessageVo> findByMessageId(@ApiParam(name = "messageId", value = "消息ID", example = "0") @PathVariable Long messageId) {
+    public Result<MessageVo> findByMessageId(@ApiParam(name = "messageId", value = "消息ID") @PathVariable Long messageId) {
         log.info("findByMessageId - 根据消息ID查询消息信息. messageId={}", messageId);
 
         try {
