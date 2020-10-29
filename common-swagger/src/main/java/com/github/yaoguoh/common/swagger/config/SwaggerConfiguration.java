@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -28,7 +27,6 @@ import java.util.stream.Collectors;
  * @author WYG
  */
 @Slf4j
-@Profile({"dev", "test"})
 @EnableOpenApi
 @AllArgsConstructor
 @EnableConfigurationProperties(SwaggerProperties.class)
