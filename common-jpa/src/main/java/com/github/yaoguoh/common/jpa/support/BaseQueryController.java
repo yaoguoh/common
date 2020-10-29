@@ -38,7 +38,7 @@ public abstract class BaseQueryController<T, I> {
      */
     @ApiOperation(value = "根据ID字段进行查询")
     @GetMapping("/{id}")
-    public Result<T> findById(@ApiParam(name = "id", value = "实体ID", required = true, example = "0") @PathVariable I id) {
+    public Result<T> findById(@ApiParam(name = "id", value = "实体ID", required = true) @PathVariable I id) {
         log.info("findById - 通过Id查询实体. id={}", id);
         return ResultGenerator.ok(service.findById(id));
     }
@@ -131,11 +131,11 @@ public abstract class BaseQueryController<T, I> {
     @ApiOperation(value = "根据Pageable进行分页查询")
     @GetMapping(value = "/list/by/pageable")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
+            @ApiImplicitParam(name = "page", dataTypeClass = Integer.class, paramType = "query",
                     value = "要检索的结果页(从0开始).", defaultValue = "0"),
-            @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+            @ApiImplicitParam(name = "size", dataTypeClass = Integer.class, paramType = "query",
                     value = "每页记录数.", defaultValue = "20"),
-            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataTypeClass = Sort.class, paramType = "query",
                     value = "排序的标准格式格式(属性,asc|desc). " +
                             "默认排序顺序为升序. " +
                             "支持多排序条件.")
@@ -156,11 +156,11 @@ public abstract class BaseQueryController<T, I> {
     @ApiOperation(value = "根据实体属性和Pageable进行分页查询")
     @GetMapping(value = "/list/by/example/pageable")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
+            @ApiImplicitParam(name = "page", dataTypeClass = Integer.class, paramType = "query",
                     value = "要检索的结果页(从0开始).", defaultValue = "0"),
-            @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+            @ApiImplicitParam(name = "size", dataTypeClass = Integer.class, paramType = "query",
                     value = "每页记录数.", defaultValue = "20"),
-            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataTypeClass = Sort.class, paramType = "query",
                     value = "排序的标准格式格式(属性,asc|desc). " +
                             "默认排序顺序为升序. " +
                             "支持多排序条件.")
