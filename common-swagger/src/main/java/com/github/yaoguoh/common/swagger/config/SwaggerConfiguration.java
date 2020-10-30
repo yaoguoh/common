@@ -2,6 +2,7 @@ package com.github.yaoguoh.common.swagger.config;
 
 import com.github.yaoguoh.common.swagger.properties.SwaggerProperties;
 import com.google.common.net.HttpHeaders;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -51,7 +52,7 @@ public class SwaggerConfiguration {
                 .host(swaggerProperties.getHost())
                 // 选择哪些接口作为swagger的doc发布
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
                 //配置自定义参数
