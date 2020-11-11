@@ -58,7 +58,7 @@ public interface IService<T, ID> {
     /**
      * 查询总数
      *
-     * @return the int
+     * @return the long
      */
     Long findCount();
 
@@ -66,7 +66,7 @@ public interface IService<T, ID> {
      * 根据实体中的属性查询总数, 查询条件使用等号
      *
      * @param example the example
-     * @return the int
+     * @return the long
      */
     Long findCountByExample(Example<T> example);
 
@@ -74,7 +74,7 @@ public interface IService<T, ID> {
      * 保存一个实体, null的属性不会保存, 会使用数据库默认值
      *
      * @param domain the domain
-     * @return the int
+     * @return the t
      */
     @Transactional(rollbackFor = Exception.class)
     T save(T domain);
@@ -83,7 +83,7 @@ public interface IService<T, ID> {
      * 批量保存  @param list the list
      *
      * @param list the list
-     * @return the int
+     * @return the list
      */
     @Transactional(rollbackFor = Exception.class)
     List<T> batchSave(List<T> list);
@@ -92,7 +92,7 @@ public interface IService<T, ID> {
      * 根据主键更新属性不为null的值  @param entity the entity
      *
      * @param domain the domain
-     * @return the int
+     * @return the t
      */
     @Transactional(rollbackFor = Exception.class)
     T update(T domain);
