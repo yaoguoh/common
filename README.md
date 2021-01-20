@@ -5,7 +5,7 @@
     <dependency>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.3.7.RELEASE</version>
+        <version>2.4.2</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
@@ -85,9 +85,9 @@ public class ProviderConfiguration {
 elasticsearch:
   xpack-username: 'elastic'
   xpack-password: password'
-  keystore: demo.elasticsearch.com.jks
+  keystore: example.elasticsearch.com.jks
   keystore-password: password
-  host: demo.elasticsearch.com
+  host: example.elasticsearch.com
   port: 443
   scheme: https
 ```
@@ -180,11 +180,6 @@ public class UserServiceImpl extends BaseService<User, Long> implements UserServ
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-sleuth-zipkin</artifactId>
     </dependency>
-    <!--断路器依赖-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
 </dependencies>
 ```
 
@@ -211,7 +206,7 @@ swagger:
   api-info:
     title: '应用服务'
     description: '应用服务 RESTFUL API'
-    host: gateway.demo.com
+    host: gateway.example.com
     parameters:
       - name: 'Identity'
         description: '设备标识'
