@@ -5,11 +5,12 @@
     <parent>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.4.3</version>
+        <version>2.4.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-job</artifactId>
+
     <properties>
         <xxl-job.version>2.3.0</xxl-job.version>
     </properties>
