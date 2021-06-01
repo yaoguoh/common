@@ -5,18 +5,19 @@
     <parent>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.4.6</version>
+        <version>2.5.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-jpa</artifactId>
 
     <dependencies>
-        <!-- web 依赖-->
+        <!-- Web 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- SpringBootJpa 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -33,7 +34,7 @@
             <groupId>com.github.yaoguoh</groupId>
             <artifactId>common-exception</artifactId>
         </dependency>
-        <!--Lombok-->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
