@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
@@ -38,6 +38,7 @@
     <modules>
         <module>common-util</module>
         <module>common-jpa</module>
+        <module>common-log</module>
         <module>common-job</module>
         <module>common-redis</module>
         <module>common-swagger</module>
@@ -119,6 +120,11 @@
             <dependency>
                 <groupId>com.github.yaoguoh</groupId>
                 <artifactId>common-jpa</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.yaoguoh</groupId>
+                <artifactId>common-log</artifactId>
                 <version>${common.version}</version>
             </dependency>
             <dependency>

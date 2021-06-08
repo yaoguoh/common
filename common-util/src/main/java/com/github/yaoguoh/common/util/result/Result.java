@@ -1,4 +1,3 @@
-
 package com.github.yaoguoh.common.util.result;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -17,44 +16,37 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     /**
-     * 序列化标识
-     */
-    private static final long serialVersionUID = 4893280118017319089L;
-
-    /**
      * 成功码.
      */
     public static final int SUCCESS_CODE = 200;
-
     /**
      * 成功信息.
      */
     public static final String SUCCESS_MESSAGE = "操作成功";
-
     /**
      * 错误码.
      */
     public static final int ERROR_CODE = 500;
-
     /**
      * 错误信息.
      */
-    public static final String ERROR_MESSAGE = "内部异常";
-
+    public static final String ERROR_MESSAGE   = "内部异常";
     /**
      * 错误码：参数非法
      */
-    public static final int ILLEGAL_ARGUMENT_CODE_ = 100;
-
+    public static final int    ILLEGAL_ARGUMENT_CODE_ = 100;
     /**
      * 错误信息：参数非法
      */
     public static final String ILLEGAL_ARGUMENT_MESSAGE = "参数非法";
-
+    /**
+     * 序列化标识
+     */
+    private static final long  serialVersionUID = 4893280118017319089L;
     /**
      * 编号.
      */
-    private int code;
+    private int                code;
 
     /**
      * 信息.

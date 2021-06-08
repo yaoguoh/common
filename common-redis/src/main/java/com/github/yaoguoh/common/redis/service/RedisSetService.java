@@ -1,4 +1,3 @@
-
 package com.github.yaoguoh.common.redis.service;
 
 import javax.validation.constraints.NotNull;

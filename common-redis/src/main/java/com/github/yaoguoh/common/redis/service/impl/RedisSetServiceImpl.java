@@ -30,7 +30,7 @@ public class RedisSetServiceImpl implements RedisSetService {
      */
     @Override
     public Set<String> getAllValue(@NotNull String key) {
-        Set<String> result;
+        Set<String>                   result;
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
         result = setOps.members(key);
         log.info("getAllValue - 根据key获取元素. [OK] key={}, value={}", key, result);
@@ -47,7 +47,7 @@ public class RedisSetServiceImpl implements RedisSetService {
     @Override
     public Long add(@NotNull String key, @NotNull String... value) {
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
-        Long result = setOps.add(key, value);
+        Long                          result = setOps.add(key, value);
         log.info("add - 向key里面添加元素, key={}, value={}, result={}", key, value, result);
         return result;
     }
@@ -62,7 +62,7 @@ public class RedisSetServiceImpl implements RedisSetService {
     @Override
     public Long remove(@NotNull String key, @NotNull String... value) {
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
-        Long result = setOps.remove(key, (Object) value);
+        Long                          result = setOps.remove(key, (Object) value);
         log.info("remove - 根据key移除元素, key={}, value={}, result={}", key, value, result);
         return result;
     }

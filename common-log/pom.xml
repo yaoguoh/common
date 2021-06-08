@@ -9,18 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-exception</artifactId>
+    <artifactId>common-log</artifactId>
 
     <dependencies>
-        <!-- Lombok -->
         <dependency>
             <groupId>com.github.yaoguoh</groupId>
-            <artifactId>common-util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>common-jpa</artifactId>
         </dependency>
     </dependencies>
-
 </project>
