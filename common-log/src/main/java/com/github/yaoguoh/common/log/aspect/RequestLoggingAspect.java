@@ -17,10 +17,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
@@ -117,6 +120,10 @@ public class RequestLoggingAspect {
         Object[] paramValues = joinPoint.getArgs();
         for (int i = 0; i < paramNames.length; i++) {
             Object value = paramValues[i];
+            // 不支持序列化参数过滤
+            if (value instanceof BindingResult || value instanceof ServletRequest || value instanceof ServletResponse) {
+                continue;
+            }
             // 文件对象获取文件名
             if (value instanceof MultipartFile) {
                 MultipartFile file = (MultipartFile) value;
