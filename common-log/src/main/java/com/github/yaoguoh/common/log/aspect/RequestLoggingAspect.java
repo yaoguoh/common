@@ -1,11 +1,12 @@
 package com.github.yaoguoh.common.log.aspect;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yaoguoh.common.log.annotation.RequestLogging;
 import com.github.yaoguoh.common.log.domain.CommonRequestLog;
 import com.github.yaoguoh.common.log.service.AsyncLogService;
 import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -17,13 +18,10 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
@@ -64,17 +62,18 @@ public class RequestLoggingAspect {
         Signature                signature       = proceedingJoinPoint.getSignature();
         MethodSignature          methodSignature = (MethodSignature) signature;
         Object                   result          = proceedingJoinPoint.proceed();
+        ObjectMapper             objectMapper    = new ObjectMapper();
 
         final CommonRequestLog commonRequestLog = CommonRequestLog.builder()
                 .ip(request.getRemoteAddr())
                 .url(request.getRequestURL().toString())
                 .httpMethod(request.getMethod())
-                .requestParam(JSON.toJSONString(this.getRequestParams(proceedingJoinPoint)))
+                .requestParam(objectMapper.writeValueAsString(this.getRequestParams(proceedingJoinPoint)))
                 .classMethod(String.format("%s.%s", signature.getDeclaringTypeName(), signature.getName()))
-                .result(JSON.toJSONString(result))
+                .result(objectMapper.writeValueAsString(result))
                 .timeCost(System.currentTimeMillis() - start)
                 .build();
-        log.debug("REQUEST INFO: {}", JSON.toJSONString(commonRequestLog));
+        log.debug("REQUEST INFO: {}", objectMapper.writeValueAsString(commonRequestLog));
 
         RequestLogging requestLogging = methodSignature.getMethod().getAnnotation(RequestLogging.class);
         if (requestLogging.save()) {
@@ -89,22 +88,24 @@ public class RequestLoggingAspect {
      * @param joinPoint 切点
      * @param exception the exception
      */
+    @SneakyThrows
     @AfterThrowing(value = "logPointCut()", throwing = "exception")
     public void doAfterThrowing(JoinPoint joinPoint, Exception exception) {
         ServletRequestAttributes attributes      = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest       request         = Objects.requireNonNull(attributes).getRequest();
         Signature                signature       = joinPoint.getSignature();
         MethodSignature          methodSignature = (MethodSignature) signature;
+        ObjectMapper             objectMapper    = new ObjectMapper();
 
         final CommonRequestLog commonRequestLog = CommonRequestLog.builder()
                 .ip(request.getRemoteAddr())
                 .url(request.getRequestURL().toString())
                 .httpMethod(request.getMethod())
-                .requestParam(JSON.toJSONString(this.getRequestParams(joinPoint)))
+                .requestParam(objectMapper.writeValueAsString(this.getRequestParams(joinPoint)))
                 .classMethod(String.format("%s.%s", signature.getDeclaringTypeName(), signature.getName()))
                 .result(StringUtils.substring(exception.getMessage(), 0, 2000))
                 .build();
-        log.debug("REQUEST INFO : {}", JSON.toJSONString(commonRequestLog));
+        log.debug("REQUEST INFO : {}", objectMapper.writeValueAsString(commonRequestLog));
 
         RequestLogging requestLogging = methodSignature.getMethod().getAnnotation(RequestLogging.class);
         if (requestLogging.save()) {
@@ -120,10 +121,6 @@ public class RequestLoggingAspect {
         Object[] paramValues = joinPoint.getArgs();
         for (int i = 0; i < paramNames.length; i++) {
             Object value = paramValues[i];
-            // 不支持序列化参数过滤
-            if (value instanceof BindingResult || value instanceof ServletRequest || value instanceof ServletResponse) {
-                continue;
-            }
             // 文件对象获取文件名
             if (value instanceof MultipartFile) {
                 MultipartFile file = (MultipartFile) value;
@@ -133,5 +130,4 @@ public class RequestLoggingAspect {
         }
         return requestParams;
     }
-
 }
