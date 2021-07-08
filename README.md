@@ -333,8 +333,6 @@ public class ExampleController {
 
 ## Sponsor
 
--
-
-JetBrains [https://www.jetbrains.com/?from=common](https://www.jetbrains.com) ![image](https://www.jetbrains.com/idea/img/idea-edu.svg)
+- JetBrains [https://www.jetbrains.com/?from=common](https://www.jetbrains.com) ![image](https://www.jetbrains.com/idea/img/idea-edu.svg)
 
 ![image](https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true)
