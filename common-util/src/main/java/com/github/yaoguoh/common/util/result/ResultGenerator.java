@@ -77,7 +77,7 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> illegalArgument() {
-        return wrap(Result.ILLEGAL_ARGUMENT_CODE_, Result.ILLEGAL_ARGUMENT_MESSAGE);
+        return wrap(Result.ILLEGAL_ARGUMENT_CODE, Result.ILLEGAL_ARGUMENT_MESSAGE);
     }
 
     /**
@@ -88,7 +88,7 @@ public class ResultGenerator {
      * @return the result
      */
     public static <E> Result<E> illegalArgument(String message) {
-        return wrap(Result.ILLEGAL_ARGUMENT_CODE_, message);
+        return wrap(Result.ILLEGAL_ARGUMENT_CODE, message);
     }
 
     /**

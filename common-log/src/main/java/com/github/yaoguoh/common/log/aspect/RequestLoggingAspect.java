@@ -37,6 +37,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class RequestLoggingAspect {
 
+    private final ObjectMapper    objectMapper;
     private final AsyncLogService asyncLogService;
 
     /**
@@ -62,7 +63,6 @@ public class RequestLoggingAspect {
         Signature                signature       = proceedingJoinPoint.getSignature();
         MethodSignature          methodSignature = (MethodSignature) signature;
         Object                   result          = proceedingJoinPoint.proceed();
-        ObjectMapper             objectMapper    = new ObjectMapper();
 
         final CommonRequestLog commonRequestLog = CommonRequestLog.builder()
                 .ip(request.getRemoteAddr())
@@ -95,7 +95,6 @@ public class RequestLoggingAspect {
         HttpServletRequest       request         = Objects.requireNonNull(attributes).getRequest();
         Signature                signature       = joinPoint.getSignature();
         MethodSignature          methodSignature = (MethodSignature) signature;
-        ObjectMapper             objectMapper    = new ObjectMapper();
 
         final CommonRequestLog commonRequestLog = CommonRequestLog.builder()
                 .ip(request.getRemoteAddr())
@@ -130,4 +129,5 @@ public class RequestLoggingAspect {
         }
         return requestParams;
     }
+
 }

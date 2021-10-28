@@ -77,7 +77,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      */
     @ApiOperation(value = "通过ID删除实体")
     @DeleteMapping(value = "/{id}")
-    public Result<Object> deleteById(@ApiParam(name = "id", value = "实体ID", required = true) @PathVariable I id) {
+    public Result<Object> deleteById(@ApiParam(name = "id", value = "实体ID", example = "0", required = true) @PathVariable I id) {
         log.info("deleteById - 根据主键字段进行删除. id={}", id);
         service.deleteById(id);
         return ResultGenerator.ok();

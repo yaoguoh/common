@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * The type Base domain.
@@ -34,15 +34,13 @@ public abstract class BaseDomain implements Serializable {
      * 创建时间
      */
     @Column(name = "created_date", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    protected Date createdDate;
+    protected LocalDateTime createdDate;
 
     /**
      * 最后修改时间
      */
     @Column(name = "last_modified_date")
-    @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    protected Date lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 }
