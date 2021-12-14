@@ -22,6 +22,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
@@ -124,6 +125,9 @@ public class RequestLoggingAspect {
             if (value instanceof MultipartFile) {
                 MultipartFile file = (MultipartFile) value;
                 value = file.getOriginalFilename();
+            }
+            if (value instanceof ServletRequest) {
+                value = ((ServletRequest) value).getRemoteAddr();
             }
             requestParams.put(paramNames[i], value);
         }

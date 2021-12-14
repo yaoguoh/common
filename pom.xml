@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.5.6</version>
+    <version>2.6.0</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -53,11 +53,11 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>2.5.6</common.version>
-        <spring-boot.version>2.5.6</spring-boot.version>
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <common.version>2.6.0</common.version>
+        <spring-boot.version>2.6.0</spring-boot.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <spring-boot-admin.version>2.5.2</spring-boot-admin.version>
+        <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-text.version>1.9</commons-text.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -66,13 +66,13 @@
         <commons-configuration2.version>2.7</commons-configuration2.version>
         <fastjson.version>1.2.78</fastjson.version>
         <guava.version>31.0.1-jre</guava.version>
-        <hutool.version>5.7.15</hutool.version>
+        <hutool.version>5.7.17</hutool.version>
         <poi.version>5.0.0</poi.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- SpringCloud 微服务 -->
+            <!-- SpringCloud Dependencies -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -80,7 +80,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- SpringBoot 依赖配置 -->
+            <!-- SpringBoot Dependencies -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -88,7 +88,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- SpringCloudAlibaba 依赖 -->
+            <!-- SpringCloudAlibaba Dependencies -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -96,7 +96,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- SpringBoot 监控客户端 -->
+            <!-- SpringBoot Admin Client-->
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
@@ -151,7 +151,7 @@
             </dependency>
             <!-- common end -->
 
-            <!-- IO常用工具类 -->
+            <!-- IO Utils -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
@@ -193,19 +193,19 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
-            <!-- Hutool -->
+            <!-- Hutool Utils -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-            <!-- Guava工具类 -->
+            <!-- Guava Utils -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-            <!-- Excel工具 -->
+            <!-- Excel Utils -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
@@ -260,7 +260,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 必须配置 javadoc-->
+            <!-- -Must- javadoc-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -274,7 +274,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- 必须配置 sonatype-->
+            <!-- -Must- sonatype-->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -286,7 +286,7 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            <!-- 必须配置  GPG-->
+            <!-- -Must- GPG-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
