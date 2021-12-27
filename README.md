@@ -8,7 +8,7 @@
     <dependency>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.6.1</version>
+        <version>2.6.2</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
@@ -227,7 +227,7 @@ public class UserServiceImpl extends BaseService<User, Long> implements UserServ
 </dependency>
 ```
 
-## common-swagger
+## common-doc
 
 ### pom
 
@@ -235,7 +235,7 @@ public class UserServiceImpl extends BaseService<User, Long> implements UserServ
 
 <dependency>
     <groupId>com.github.yaoguoh</groupId>
-    <artifactId>common-swagger</artifactId>
+    <artifactId>common-doc</artifactId>
 </dependency>
 ```
 
@@ -244,7 +244,7 @@ public class UserServiceImpl extends BaseService<User, Long> implements UserServ
 ```java
 
 @Configuration
-@Import({SwaggerConfiguration.class})
+@Import({DocConfiguration.class})
 public class ProviderConfiguration {
 }
 ```
@@ -252,16 +252,11 @@ public class ProviderConfiguration {
 ### example yaml
 
 ```yaml
-swagger:
-  api-info:
+doc:
+  info:
     title: '应用服务'
     description: '应用服务 RESTFUL API'
-    host: gateway.example.com
-    requestParameters:
-      - name: 'Identity'
-        description: '设备标识'
-        modelRef: 'string'
-        parameterType: 'header'
+    serverUrl: gateway.example.com
 ```
 
 ## common-job

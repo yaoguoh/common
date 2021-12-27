@@ -2,8 +2,8 @@ package com.github.yaoguoh.common.jpa.support;
 
 import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param domain the domain
      * @return the int
      */
-    @ApiOperation(value = "新建实体")
+    @Operation(summary = "新建实体")
     @PostMapping(value = "/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<T> save(@RequestBody T domain) {
@@ -45,7 +45,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param list the list
      * @return the int
      */
-    @ApiOperation(value = "批量新建实体")
+    @Operation(summary = "批量新建实体")
     @PostMapping(value = "/batch/creat")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<List<T>> batchSave(@RequestBody List<T> list) {
@@ -60,7 +60,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param domain the domain
      * @return the int
      */
-    @ApiOperation(value = "更新实体")
+    @Operation(summary = "更新实体")
     @PutMapping(value = "/update")
     public Result<T> update(@RequestBody T domain) {
         log.info("update - 更新实体. domain={}", domain);
@@ -75,9 +75,9 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param id the id
      * @return the wrapper
      */
-    @ApiOperation(value = "通过ID删除实体")
+    @Operation(summary = "通过ID删除实体")
     @DeleteMapping(value = "/{id}")
-    public Result<Object> deleteById(@ApiParam(name = "id", value = "实体ID", example = "0", required = true) @PathVariable I id) {
+    public Result<Object> deleteById(@Parameter(name = "id", description = "实体ID", example = "0", required = true) @PathVariable I id) {
         log.info("deleteById - 根据主键字段进行删除. id={}", id);
         service.deleteById(id);
         return ResultGenerator.ok();
@@ -89,7 +89,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param list the list
      * @return the wrapper
      */
-    @ApiOperation(value = "通过ID集合批量删除")
+    @Operation(summary = "通过ID集合批量删除")
     @DeleteMapping(value = "/list")
     public Result<Object> deleteById(@RequestBody List<I> list) {
         log.info("deleteById - 通过ID集合批量删除. list={}", list);

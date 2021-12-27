@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.6.1</version>
+    <version>2.6.2</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -36,12 +36,12 @@
     </parent>
 
     <modules>
-        <module>common-util</module>
+        <module>common-doc</module>
         <module>common-jpa</module>
         <module>common-log</module>
         <module>common-job</module>
+        <module>common-util</module>
         <module>common-redis</module>
-        <module>common-swagger</module>
         <module>common-exception</module>
         <module>common-elasticsearch</module>
         <module>common-spring-cloud</module>
@@ -53,11 +53,11 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>2.6.1</common.version>
-        <spring-boot.version>2.6.1</spring-boot.version>
+        <common.version>2.6.2</common.version>
+        <spring-boot.version>2.6.2</spring-boot.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
+        <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-text.version>1.9</commons-text.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -66,7 +66,7 @@
         <commons-configuration2.version>2.7</commons-configuration2.version>
         <fastjson.version>1.2.78</fastjson.version>
         <guava.version>31.0.1-jre</guava.version>
-        <hutool.version>5.7.17</hutool.version>
+        <hutool.version>5.7.18</hutool.version>
         <poi.version>5.0.0</poi.version>
     </properties>
 
@@ -141,7 +141,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.yaoguoh</groupId>
-                <artifactId>common-swagger</artifactId>
+                <artifactId>common-doc</artifactId>
                 <version>${common.version}</version>
             </dependency>
             <dependency>

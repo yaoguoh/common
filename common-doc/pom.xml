@@ -3,15 +3,15 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.6.1</version>
+        <groupId>com.github.yaoguoh</groupId>
+        <version>2.6.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-swagger</artifactId>
+    <artifactId>common-doc</artifactId>
     <properties>
-        <swagger.version>3.0.0</swagger.version>
+        <springdoc.version>1.6.2</springdoc.version>
     </properties>
 
     <dependencies>
@@ -28,12 +28,11 @@
             <groupId>com.github.yaoguoh</groupId>
             <artifactId>common-util</artifactId>
         </dependency>
-
-        <!-- Swagger -->
+        <!-- SpringDoc -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${swagger.version}</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
     </dependencies>
 </project>
