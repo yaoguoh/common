@@ -32,7 +32,7 @@ public abstract class BaseDomain implements Serializable {
      * The Id.
      */
     @Id
-    @Schema(name = "实体ID", example = "0")
+    @Schema(description = "实体ID", example = "0")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 

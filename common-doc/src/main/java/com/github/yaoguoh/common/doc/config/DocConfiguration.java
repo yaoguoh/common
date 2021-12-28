@@ -2,7 +2,6 @@ package com.github.yaoguoh.common.doc.config;
 
 import com.github.yaoguoh.common.doc.properties.DocProperties;
 import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
@@ -59,9 +58,6 @@ public class DocConfiguration {
                 // 配置认证
                 .components(new Components()
                         .addSecuritySchemes("Bearer Authorization", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"))
-                        .addSecuritySchemes("Basic Authorization", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("SpringShop Wiki Documentation")
-                        .url("https://springshop.wiki.github.org/docs"));
+                        .addSecuritySchemes("Basic Authorization", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")));
     }
 }
