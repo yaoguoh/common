@@ -3,7 +3,7 @@ package com.github.yaoguoh.common.log.annotation;
 import java.lang.annotation.*;
 
 /**
- * 自定义请求记录注解
+ * 自定义操作日志记录注解
  *
  * @author WYG
  */

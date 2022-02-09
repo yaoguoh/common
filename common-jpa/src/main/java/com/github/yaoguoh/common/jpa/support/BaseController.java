@@ -73,7 +73,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * 根据主键字段进行删除, 方法参数必须包含完整的主键属性
      *
      * @param id the id
-     * @return the wrapper
+     * @return the result
      */
     @Operation(summary = "通过ID删除实体")
     @DeleteMapping(value = "/{id}")
@@ -87,7 +87,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * 通过ID集合批量删除
      *
      * @param list the list
-     * @return the wrapper
+     * @return the result
      */
     @Operation(summary = "通过ID集合批量删除")
     @DeleteMapping(value = "/list")

@@ -126,11 +126,8 @@ public abstract class BaseQueryController<T, I> {
      * @return the page
      */
     @Operation(summary = "根据Pageable进行分页查询")
-    @Parameter(name = "page", description = "要检索的结果页(从0开始).", example = "0")
-    @Parameter(name = "size", description = "每页记录数.", example = "20")
-    @Parameter(name = "sort", description = "排序的标准格式格式(属性,asc|desc), 默认排序顺序为升序, 支持多排序条件.")
     @GetMapping(value = "/list/by/pageable")
-    public Result<Page<T>> findByPageable(@Parameter(hidden = true) Pageable pageable) {
+    public Result<Page<T>> findByPageable(Pageable pageable) {
         log.info("findAllByPageable - 根据Pageable进行分页查询. pageable={}", pageable);
 
         return ResultGenerator.ok(service.findAllByPageable(pageable));
@@ -144,11 +141,8 @@ public abstract class BaseQueryController<T, I> {
      * @return the page
      */
     @Operation(summary = "根据实体属性和Pageable进行分页查询")
-    @Parameter(name = "page", description = "要检索的结果页(从0开始).", example = "0")
-    @Parameter(name = "size", description = "每页记录数.", example = "20")
-    @Parameter(name = "sort", description = "排序的标准格式格式(属性,asc|desc), 默认排序顺序为升序, 支持多排序条件.")
     @GetMapping(value = "/list/by/example/pageable")
-    public Result<Page<T>> findByExampleAndPageable(T example, @Parameter(hidden = true) Pageable pageable) {
+    public Result<Page<T>> findByExampleAndPageable(T example, Pageable pageable) {
         log.info("findAllByExampleAndPageable - 根据实体属性和Pageable进行分页查询. example={}, pageable={}", example, pageable);
 
         return ResultGenerator.ok(service.findAllByExampleAndPageable(Example.of(example), pageable));

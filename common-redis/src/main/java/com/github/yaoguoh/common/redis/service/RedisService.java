@@ -1,6 +1,5 @@
 package com.github.yaoguoh.common.redis.service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
@@ -17,21 +16,21 @@ public interface RedisService {
      * @param key the key
      * @return value by key
      */
-    String getByKey(@NotNull String key);
+    String getByKey(String key);
 
     /**
      * Delete . 通过 key 删除
      *
      * @param key the key
      */
-    void delete(@NotNull String key);
+    void delete(String key);
 
     /**
      * Delete. 通过 key集合 删除
      *
      * @param keys the keys
      */
-    void delete(@NotNull Collection<String> keys);
+    void delete(Collection<String> keys);
 
     /**
      * Set.
@@ -39,7 +38,7 @@ public interface RedisService {
      * @param key   the key
      * @param value the value
      */
-    void set(@NotNull String key, @NotNull String value);
+    void set(String key, String value);
 
     /**
      * Set.
@@ -49,5 +48,5 @@ public interface RedisService {
      * @param timeout the timeout
      * @param unit    the unit
      */
-    void set(@NotNull String key, @NotNull String value, @NotNull long timeout, @NotNull TimeUnit unit);
+    void set(String key, String value, long timeout, TimeUnit unit);
 }

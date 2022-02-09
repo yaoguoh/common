@@ -7,7 +7,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
@@ -24,26 +23,26 @@ public class RedisServiceImpl implements RedisService {
     private final StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public String getByKey(@NotNull String key) {
+    public String getByKey(String key) {
         String value = stringRedisTemplate.opsForValue().get(key);
         log.info("getByKey. [OK] key={}, value={}", key, value);
         return value;
     }
 
     @Override
-    public void delete(@NotNull String key) {
+    public void delete(String key) {
         stringRedisTemplate.delete(key);
         log.info("delete. [OK] key={}", key);
     }
 
     @Override
-    public void delete(@NotNull Collection<String> keys) {
+    public void delete(Collection<String> keys) {
         stringRedisTemplate.delete(keys);
         log.info("delete. [OK] keys={}", keys);
     }
 
     @Override
-    public void set(@NotNull String key, @NotNull String value) {
+    public void set(String key, String value) {
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
         ops.set(key, value);
         stringRedisTemplate.expire(key, 1L, TimeUnit.MINUTES);
@@ -51,7 +50,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void set(@NotNull String key, @NotNull String value, @NotNull long timeout, @NotNull TimeUnit unit) {
+    public void set(String key, String value, long timeout, TimeUnit unit) {
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
         ops.set(key, value);
         stringRedisTemplate.expire(key, timeout, unit);

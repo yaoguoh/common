@@ -1,6 +1,5 @@
 package com.github.yaoguoh.common.redis.service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -15,7 +14,7 @@ public interface RedisSetService {
      * @param key the key
      * @return the all value
      */
-    Set<String> getAllValue(@NotNull String key);
+    Set<String> getAllValue(String key);
 
     /**
      * 向集合添加一个或多个成员
@@ -24,7 +23,7 @@ public interface RedisSetService {
      * @param value the value
      * @return the long
      */
-    Long add(@NotNull String key, @NotNull String... value);
+    Long add(String key, String... value);
 
     /**
      * 移除集合中一个或多个成员
@@ -33,6 +32,6 @@ public interface RedisSetService {
      * @param value the value
      * @return the long
      */
-    Long remove(@NotNull String key, @NotNull String... value);
+    Long remove(String key, String... value);
 
 }

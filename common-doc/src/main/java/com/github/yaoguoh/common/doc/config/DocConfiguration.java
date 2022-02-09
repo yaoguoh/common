@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import lombok.AllArgsConstructor;
@@ -56,6 +57,7 @@ public class DocConfiguration {
                 // 配置接口访问地址
                 .servers(Collections.singletonList(new Server().url(docProperties.getServerUrl())))
                 // 配置认证
+                .security(Collections.singletonList(new SecurityRequirement().addList("Bearer Authorization")))
                 .components(new Components()
                         .addSecuritySchemes("Bearer Authorization", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"))
                         .addSecuritySchemes("Basic Authorization", new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")));

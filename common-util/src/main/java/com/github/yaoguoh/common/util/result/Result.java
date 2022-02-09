@@ -22,7 +22,7 @@ public class Result<T> implements Serializable {
     /**
      * 成功信息.
      */
-    public static final  String SUCCESS_MESSAGE          = "操作成功";
+    public static final  String SUCCESS_MESSAGE          = "success";
     /**
      * 错误码.
      */
@@ -30,7 +30,7 @@ public class Result<T> implements Serializable {
     /**
      * 错误信息.
      */
-    public static final  String ERROR_MESSAGE            = "内部异常";
+    public static final  String ERROR_MESSAGE            = "server error";
     /**
      * 错误码：参数非法
      */
@@ -38,15 +38,16 @@ public class Result<T> implements Serializable {
     /**
      * 错误信息：参数非法
      */
-    public static final  String ILLEGAL_ARGUMENT_MESSAGE = "参数非法";
+    public static final  String ILLEGAL_ARGUMENT_MESSAGE = "illegal argument";
     /**
      * 序列化标识
      */
     private static final long   serialVersionUID         = 4893280118017319089L;
+
     /**
      * 编号.
      */
-    private              int    code;
+    private int code;
 
     /**
      * 信息.
@@ -59,14 +60,14 @@ public class Result<T> implements Serializable {
     private T result;
 
     /**
-     * Instantiates a new wrapper. default code=200
+     * Instantiates a new result. default code=200
      */
     Result() {
         this(SUCCESS_CODE, SUCCESS_MESSAGE);
     }
 
     /**
-     * Instantiates a new wrapper.
+     * Instantiates a new result.
      *
      * @param code    the code
      * @param message the message
@@ -76,7 +77,7 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * Instantiates a new wrapper.
+     * Instantiates a new result.
      *
      * @param code    the code
      * @param message the message
@@ -91,7 +92,7 @@ public class Result<T> implements Serializable {
      * Sets the 编号 , 返回自身的引用.
      *
      * @param code the new 编号
-     * @return the wrapper
+     * @return the result
      */
     private Result<T> code(int code) {
         this.setCode(code);
@@ -102,7 +103,7 @@ public class Result<T> implements Serializable {
      * Sets the 信息 , 返回自身的引用.
      *
      * @param message the new 信息
-     * @return the wrapper
+     * @return the result
      */
     private Result<T> message(String message) {
         this.setMessage(message);
@@ -113,7 +114,7 @@ public class Result<T> implements Serializable {
      * Sets the 结果数据 , 返回自身的引用.
      *
      * @param result the new 结果数据
-     * @return the wrapper
+     * @return the result
      */
     public Result<T> result(T result) {
         this.setResult(result);
@@ -121,7 +122,7 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 判断是否成功： 依据 Wrapper.SUCCESS_CODE == this.code
+     * 判断是否成功： 依据 Result.SUCCESS_CODE == this.code
      *
      * @return code =200,true;否则 false.
      */
@@ -131,7 +132,7 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 判断是否成功： 依据 Wrapper.SUCCESS_CODE != this.code
+     * 判断是否成功： 依据 Result.SUCCESS_CODE != this.code
      *
      * @return code !=200,true;否则 false.
      */

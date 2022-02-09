@@ -7,7 +7,6 @@ import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -29,7 +28,7 @@ public class RedisSetServiceImpl implements RedisSetService {
      * @return the all value
      */
     @Override
-    public Set<String> getAllValue(@NotNull String key) {
+    public Set<String> getAllValue(String key) {
         Set<String>                   result;
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
         result = setOps.members(key);
@@ -45,7 +44,7 @@ public class RedisSetServiceImpl implements RedisSetService {
      * @return the long
      */
     @Override
-    public Long add(@NotNull String key, @NotNull String... value) {
+    public Long add(String key, String... value) {
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
         Long                          result = setOps.add(key, value);
         log.info("add - 向key里面添加元素, key={}, value={}, result={}", key, value, result);
@@ -60,7 +59,7 @@ public class RedisSetServiceImpl implements RedisSetService {
      * @return the long
      */
     @Override
-    public Long remove(@NotNull String key, @NotNull String... value) {
+    public Long remove(String key, String... value) {
         SetOperations<String, String> setOps = stringRedisTemplate.opsForSet();
         Long                          result = setOps.remove(key, (Object) value);
         log.info("remove - 根据key移除元素, key={}, value={}, result={}", key, value, result);
