@@ -5,14 +5,14 @@
     <parent>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-elasticsearch</artifactId>
 
     <properties>
-        <elasticsearch.version>7.16.2</elasticsearch.version>
+        <elasticsearch.version>7.17.1</elasticsearch.version>
     </properties>
 
     <dependencies>
