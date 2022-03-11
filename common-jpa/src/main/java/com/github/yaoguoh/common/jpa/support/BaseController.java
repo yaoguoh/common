@@ -46,7 +46,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @return the int
      */
     @Operation(summary = "批量新建实体")
-    @PostMapping(value = "/batch/creat")
+    @PostMapping(value = "/batch/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<List<T>> batchSave(@RequestBody List<T> list) {
         log.info("batchSave - 批量保存. list={}", list);
@@ -79,6 +79,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @DeleteMapping(value = "/{id}")
     public Result<Object> deleteById(@Parameter(name = "id", description = "实体ID", example = "0", required = true) @PathVariable I id) {
         log.info("deleteById - 根据主键字段进行删除. id={}", id);
+
         service.deleteById(id);
         return ResultGenerator.ok();
     }
@@ -93,6 +94,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @DeleteMapping(value = "/list")
     public Result<Object> deleteById(@RequestBody List<I> list) {
         log.info("deleteById - 通过ID集合批量删除. list={}", list);
+
         service.deleteByIdList(list);
         return ResultGenerator.ok();
     }
