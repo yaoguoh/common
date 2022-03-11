@@ -12,7 +12,7 @@
     <artifactId>common-elasticsearch</artifactId>
 
     <properties>
-        <elasticsearch.version>7.17.1</elasticsearch.version>
+        <elasticsearch.version>8.1.0</elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -35,11 +35,6 @@
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-client</artifactId>
-            <version>${elasticsearch.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
             <version>${elasticsearch.version}</version>
         </dependency>
         <!-- Elasticsearch end -->

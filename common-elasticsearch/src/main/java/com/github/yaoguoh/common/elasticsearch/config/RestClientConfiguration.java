@@ -12,7 +12,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,32 +33,31 @@ import java.security.cert.CertificateException;
 @Configuration
 @AllArgsConstructor
 @EnableConfigurationProperties(ElasticsearchProperties.class)
-public class RestHighLevelClientConfiguration {
+public class RestClientConfiguration {
 
     private final ElasticsearchProperties elasticsearchProperties;
 
     /**
-     * Client rest high level client.
+     * Rest client.
      *
-     * @return the rest high level client
+     * @return the rest client
      */
     @Bean
-    public RestHighLevelClient restHighLevelClient() {
+    public RestClient restClient() {
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(elasticsearchProperties.getXpackUsername(), elasticsearchProperties.getXpackPassword()));
         try {
             final SSLContext sslContext = SSLContexts.custom()
                     .loadTrustMaterial(new File(elasticsearchProperties.getKeystore()), elasticsearchProperties.getKeystorePassword().toCharArray(), new TrustSelfSignedStrategy())
                     .build();
-
             RestClientBuilder restClientBuilder =
-                    RestClient.builder(
-                            new HttpHost(elasticsearchProperties.getHost(), elasticsearchProperties.getPort(), elasticsearchProperties.getScheme()))
-                            .setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder
-                                    .setDefaultCredentialsProvider(credentialsProvider)
-                                    .setSSLContext(sslContext)
+                    RestClient.builder(new HttpHost(elasticsearchProperties.getHost(), elasticsearchProperties.getPort(), elasticsearchProperties.getScheme()))
+                            .setHttpClientConfigCallback(
+                                    httpClientBuilder -> httpClientBuilder
+                                            .setDefaultCredentialsProvider(credentialsProvider)
+                                            .setSSLContext(sslContext)
                             );
-            return new RestHighLevelClient(restClientBuilder);
+            return restClientBuilder.build();
         } catch (NoSuchAlgorithmException e) {
             log.error("NoSuchAlgorithmException: [{}]", e.getMessage());
             e.printStackTrace();
