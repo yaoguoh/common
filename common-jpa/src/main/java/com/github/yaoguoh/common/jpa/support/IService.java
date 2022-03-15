@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -69,6 +70,15 @@ public interface IService<T, ID> {
      * @return the long
      */
     Long findCountByExample(Example<T> example);
+
+    /**
+     * 按创建时间范围统计
+     *
+     * @param greaterThan the greater than
+     * @param lessThan    the less than
+     * @return the long
+     */
+    Long createdRangeCount(LocalDateTime greaterThan, LocalDateTime lessThan);
 
     /**
      * 保存一个实体, null的属性不会保存, 会使用数据库默认值

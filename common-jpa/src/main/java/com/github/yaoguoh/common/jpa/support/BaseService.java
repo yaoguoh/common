@@ -1,14 +1,20 @@
 package com.github.yaoguoh.common.jpa.support;
 
 import com.github.yaogouh.common.exception.BusinessException;
+import com.github.yaoguoh.common.jpa.domain.BaseListenerDomain_;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import javax.persistence.criteria.Predicate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +33,9 @@ public abstract class BaseService<T, ID> implements IService<T, ID> {
      */
     @Autowired
     protected JpaRepository<T, ID> jpaRepository;
+
+    @Autowired
+    protected JpaSpecificationExecutor<T> jpaSpecificationExecutor;
 
     @Override
     public T findById(ID id) {
@@ -77,6 +86,18 @@ public abstract class BaseService<T, ID> implements IService<T, ID> {
         log.info("findCountByExample - 根据实体中的属性查询总数, 查询条件使用等号. example={}", example);
 
         return jpaRepository.count(example);
+    }
+
+    @Override
+    public Long createdRangeCount(LocalDateTime greaterThan, LocalDateTime lessThan) {
+        Specification<T> specification = (root, criteriaQuery, criteriaBuilder) -> {
+            // 所有的断言及条件
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get(BaseListenerDomain_.CREATED_DATE).as(LocalDateTime.class), greaterThan));
+            predicates.add(criteriaBuilder.lessThan(root.get(BaseListenerDomain_.CREATED_DATE).as(LocalDateTime.class), lessThan));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+        return jpaSpecificationExecutor.count(specification);
     }
 
     @Override
