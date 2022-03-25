@@ -1,10 +1,11 @@
 package com.github.yaoguoh.common.jpa.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -34,9 +35,22 @@ public abstract class BaseDomain implements Serializable {
      * The Id.
      */
     @Id
-    @Schema(description = "实体ID", example = "0")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+
+    /**
+     * 创建人
+     */
+    @Column(name = "created_by", updatable = false)
+    @CreatedBy
+    protected String createdBy;
+
+    /**
+     * 最后修改人
+     */
+    @Column(name = "last_modified_by")
+    @LastModifiedBy
+    protected String lastModifiedBy;
 
     /**
      * 创建时间
@@ -66,6 +80,6 @@ public abstract class BaseDomain implements Serializable {
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return this.getClass().hashCode();
     }
 }

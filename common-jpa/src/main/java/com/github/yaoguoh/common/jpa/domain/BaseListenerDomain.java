@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * The type Base domain.
+ * The type Base listener domain.
  *
  * @author WYG
  */
@@ -32,7 +32,7 @@ public abstract class BaseListenerDomain implements Serializable {
     /**
      * 创建人
      */
-    @Column(name = "created_by")
+    @Column(name = "created_by", updatable = false)
     @CreatedBy
     protected String createdBy;
 

@@ -34,6 +34,9 @@ public abstract class BaseService<T, ID> implements IService<T, ID> {
     @Autowired
     protected JpaRepository<T, ID> jpaRepository;
 
+    /**
+     * The Jpa specification executor.
+     */
     @Autowired
     protected JpaSpecificationExecutor<T> jpaSpecificationExecutor;
 
