@@ -43,15 +43,15 @@ public class AuditLogServiceImpl extends BaseService<AuditLog, Long> implements 
         return auditLogRepository.findAll(this.buildSpecification(queryAuditLogDTO), pageable);
     }
 
-    /**
-     * 保存系统日志记录
-     *
-     * @param auditLog the system operate log
-     */
     @Async
     @Override
     public void saveLog(AuditLog auditLog) {
         auditLogRepository.save(auditLog);
+    }
+
+    @Override
+    public List<String> findModules() {
+        return auditLogRepository.findModules();
     }
 
     private Specification<AuditLog> buildSpecification(QueryAuditLogDTO queryAuditLogDTO) {

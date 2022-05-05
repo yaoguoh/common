@@ -29,6 +29,10 @@ public class PositionProperties {
          * 服务器地址
          */
         private String address = "https://restapi.amap.com/v3/ip";
+        /**
+         * 请求超时时间（毫秒）
+         */
+        private int    timeout = 3000;
     }
 
     /**
@@ -44,5 +48,9 @@ public class PositionProperties {
          * 服务器地址
          */
         private String address   = "https://ip.taobao.com/outGetIpInfo";
+        /**
+         * 请求超时时间（毫秒）
+         */
+        private int    timeout   = 3000;
     }
 }

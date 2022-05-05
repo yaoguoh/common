@@ -33,12 +33,12 @@ import java.util.List;
  *
  * @author yaoguohh
  */
-@Tag(name = "LOG REST API")
+@Tag(name = "审计日志 REST API")
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/log")
-public class LogController {
+@RequestMapping(value = "/log/audit")
+public class AuditLogController {
 
     private final AuditLogService auditLogService;
 
@@ -50,11 +50,24 @@ public class LogController {
      * @return the result
      */
     @Operation(summary = "查询审计日志(分页)")
-    @GetMapping(value = "/audit/page")
+    @GetMapping(value = "/page")
     public Result<Page<AuditLog>> findAll(QueryAuditLogDTO queryAuditLogDTO, @PageableDefault(size = 20, sort = {AuditLog_.CREATED_DATE}, direction = Sort.Direction.DESC) Pageable pageable) {
         log.debug("findAll - 查询审计日志(分页). QueryAuditLogDTO = [{}]", queryAuditLogDTO);
 
         return ResultGenerator.ok(auditLogService.findAll(queryAuditLogDTO, pageable));
+    }
+
+    /**
+     * Find modules result.
+     *
+     * @return the result
+     */
+    @Operation(summary = "查询操作模块")
+    @GetMapping(value = "/modules")
+    public Result<List<String>> findModules() {
+        log.debug("findModules - 查询操作模块.");
+
+        return ResultGenerator.ok(auditLogService.findModules());
     }
 
     /**
@@ -63,11 +76,11 @@ public class LogController {
      * @param queryAuditLogDTO the query audit log dto
      * @param response         the response
      */
-    @Log(module = "审计日志", businessType = BusinessType.EXPORT)
-    @Operation(summary = "导出审计日志")
-    @PostMapping(value = "/audit/export")
+    @Log(module = "审计日志导出", businessType = BusinessType.EXPORT)
+    @Operation(summary = "审计日志导出")
+    @PostMapping(value = "/export")
     public void export(@RequestBody QueryAuditLogDTO queryAuditLogDTO, HttpServletResponse response) {
-        log.debug("export - 导出审计日志. QueryAuditLogDTO = [{}]", queryAuditLogDTO);
+        log.debug("export - 审计日志导出. QueryAuditLogDTO = [{}]", queryAuditLogDTO);
 
         List<AuditLog> summaryList = auditLogService.findAll(queryAuditLogDTO);
         try (ExcelWriter writer = ExcelUtil.getWriter(true); ServletOutputStream outputStream = response.getOutputStream()) {

@@ -27,7 +27,7 @@ public class PositionUtils {
 
     private static final String TAOBAO_RESULT_CODE = "code";
     private static final String TAOBAO_RESULT_DATA = "data";
-    
+
     private final PositionProperties positionProperties;
 
     /**
@@ -40,7 +40,7 @@ public class PositionUtils {
         PositionProperties.Amap amap = positionProperties.getAmap();
         try {
             String         url            = amap.getAddress() + "?key=" + amap.getKey() + "&ip=" + ip;
-            String         result         = HttpUtil.get(url);
+            String         result         = HttpUtil.get(url, amap.getTimeout());
             AmapPositionVO amapPositionVO = JSON.parseObject(result).toJavaObject(AmapPositionVO.class);
             if (Integer.valueOf(1).equals(amapPositionVO.getStatus())) {
                 return Optional.of(amapPositionVO);
@@ -61,7 +61,7 @@ public class PositionUtils {
         PositionProperties.Taobao taobao = positionProperties.getTaobao();
         try {
             String     url        = taobao.getAddress() + "?accessKey=" + taobao.getAccessKey() + "&ip=" + ip;
-            String     result     = HttpUtil.get(url);
+            String     result     = HttpUtil.get(url, taobao.getTimeout());
             JSONObject jsonObject = JSON.parseObject(result);
             if (Integer.valueOf(0).equals(jsonObject.getInteger(TAOBAO_RESULT_CODE))) {
                 return Optional.of(jsonObject.getJSONObject(TAOBAO_RESULT_DATA).toJavaObject(TaobaoPositionVO.class));

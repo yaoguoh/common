@@ -40,4 +40,11 @@ public interface AuditLogService extends IService<AuditLog, Long> {
      */
     @Async
     void saveLog(AuditLog auditLog);
+
+    /**
+     * Find modules list.
+     *
+     * @return the list
+     */
+    List<String> findModules();
 }
