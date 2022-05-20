@@ -70,28 +70,4 @@ public class AuditLogController {
         return ResultGenerator.ok(auditLogService.findModules());
     }
 
-    /**
-     * 导出审计日志
-     *
-     * @param queryAuditLogDTO the query audit log dto
-     * @param response         the response
-     */
-    @Log(module = "审计日志导出", businessType = BusinessType.EXPORT)
-    @Operation(summary = "审计日志导出")
-    @PostMapping(value = "/export")
-    public void export(@RequestBody QueryAuditLogDTO queryAuditLogDTO, HttpServletResponse response) {
-        log.debug("export - 审计日志导出. QueryAuditLogDTO = [{}]", queryAuditLogDTO);
-
-        List<AuditLog> summaryList = auditLogService.findAll(queryAuditLogDTO);
-        try (ExcelWriter writer = ExcelUtil.getWriter(true); ServletOutputStream outputStream = response.getOutputStream()) {
-            writer.write(summaryList, true);
-            String filename = "attachment;filename=AUDIT_LOG" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")) + ".xlsx";
-            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
-            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, filename);
-            writer.flush(outputStream, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

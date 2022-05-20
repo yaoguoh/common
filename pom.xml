@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.6.7</version>
+    <version>2.6.8</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -53,10 +53,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>2.6.7</common.version>
-        <spring-boot.version>2.6.7</spring-boot.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
-        <spring-boot-admin.version>2.6.6</spring-boot-admin.version>
+        <common.version>2.6.8</common.version>
+        <spring-boot.version>2.6.8</spring-boot.version>
+        <spring-cloud.version>2021.0.2</spring-cloud.version>
+        <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-text.version>1.9</commons-text.version>
@@ -66,8 +66,8 @@
         <commons-configuration2.version>2.7</commons-configuration2.version>
         <fastjson.version>2.0.2</fastjson.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.7.22</hutool.version>
-        <poi.version>5.0.0</poi.version>
+        <hutool.version>5.8.1</hutool.version>
+        <poi.version>5.2.2</poi.version>
     </properties>
 
     <dependencyManagement>
