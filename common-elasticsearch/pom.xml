@@ -12,7 +12,7 @@
     <artifactId>common-elasticsearch</artifactId>
 
     <properties>
-        <elasticsearch.version>8.2.0</elasticsearch.version>
+        <elasticsearch.version>8.2.1</elasticsearch.version>
     </properties>
 
     <dependencies>
