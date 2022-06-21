@@ -25,16 +25,16 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     private IService<T, I> service;
 
     /**
-     * 保存一个实体, null的属性不会保存, 会使用数据库默认值
+     * 保存一个, null的属性不会保存, 会使用数据库默认值
      *
      * @param domain the domain
      * @return the int
      */
-    @Operation(summary = "新建实体")
+    @Operation(summary = "新建")
     @PostMapping(value = "/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<T> save(@RequestBody T domain) {
-        log.info("save - 新建实体. domain={}", domain);
+        log.info("save - 新建. domain={}", domain);
 
         return ResultGenerator.ok(service.save(domain));
     }
@@ -45,7 +45,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param list the list
      * @return the int
      */
-    @Operation(summary = "批量新建实体")
+    @Operation(summary = "批量保存(可用于更新)")
     @PostMapping(value = "/batch/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<List<T>> batchSave(@RequestBody List<T> list) {
@@ -55,15 +55,15 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     }
 
     /**
-     * 修改实体
+     * 修改
      *
      * @param domain the domain
      * @return the int
      */
-    @Operation(summary = "更新实体")
+    @Operation(summary = "更新")
     @PutMapping(value = "/update")
     public Result<T> update(@RequestBody T domain) {
-        log.info("update - 更新实体. domain={}", domain);
+        log.info("update - 更新. domain={}", domain);
 
         return ResultGenerator.ok(service.update(domain));
     }
@@ -75,9 +75,9 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      * @param id the id
      * @return the result
      */
-    @Operation(summary = "通过ID删除实体")
+    @Operation(summary = "根据ID删除")
     @DeleteMapping(value = "/{id}")
-    public Result<Object> deleteById(@Parameter(name = "id", description = "实体ID", example = "0", required = true) @PathVariable I id) {
+    public Result<Object> deleteById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
         log.info("deleteById - 根据主键字段进行删除. id={}", id);
 
         service.deleteById(id);
@@ -85,17 +85,17 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     }
 
     /**
-     * 通过ID集合批量删除
+     * 根据ID集合批量删除
      *
      * @param list the list
      * @return the result
      */
-    @Operation(summary = "通过ID集合批量删除")
-    @DeleteMapping(value = "/list")
+    @Operation(summary = "根据ID集合批量删除")
+    @DeleteMapping(value = "/all")
     public Result<Object> deleteById(@RequestBody List<I> list) {
         log.info("deleteById - 通过ID集合批量删除. list={}", list);
 
-        service.deleteByIdList(list);
+        service.deleteById(list);
         return ResultGenerator.ok();
     }
 }

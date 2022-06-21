@@ -28,32 +28,6 @@ public abstract class BaseQueryController<T, I> {
     private IService<T, I> service;
 
     /**
-     * 根据主键字段进行查询, 方法参数必须包含完整的主键属性, 查询条件使用等号
-     *
-     * @param id the id
-     * @return the t
-     */
-    @Operation(summary = "根据ID字段进行查询")
-    @GetMapping("/{id}")
-    public Result<T> findById(@Parameter(name = "id", description = "实体ID", example = "0", required = true) @PathVariable I id) {
-        log.info("findById - 通过Id查询实体. id={}", id);
-        return ResultGenerator.ok(service.findById(id));
-    }
-
-    /**
-     * 根据实体中的属性进行查询, 只能有一个返回值, 有多个结果是抛出异常, 查询条件使用等号
-     *
-     * @param example the example
-     * @return the t
-     */
-    @Operation(summary = "根据实体中的属性进行查询")
-    @GetMapping("/example")
-    public Result<T> findOneByExample(T example) {
-        log.info("findOneByExample - 根据实体中的属性进行查询. example={}", example);
-        return ResultGenerator.ok(service.findOneByExample(Example.of(example)));
-    }
-
-    /**
      * 查询全部结果, findAll()方法能达到同样的效果
      *
      * @return the list
@@ -62,34 +36,79 @@ public abstract class BaseQueryController<T, I> {
     @GetMapping("/all")
     public Result<List<T>> findAll() {
         log.info("findAll - 查询全部结果");
+
         return ResultGenerator.ok(service.findAll());
     }
 
     /**
-     * 根据实体中的属性值进行查询, 查询条件使用等号
+     * 分页查询
      *
-     * @param example the example
-     * @return the list
+     * @param pageable the pageable
+     * @return the page
      */
-    @Operation(summary = "根据实体中的属性进行查询")
-    @GetMapping("/list/by/example")
-    public Result<List<T>> findAllByExample(T example) {
-        log.info("findAllByExample - 根据实体中的属性值进行查询. ");
-        return ResultGenerator.ok(service.findAllByExample(Example.of(example)));
+    @Operation(summary = "分页查询")
+    @GetMapping(value = "/page")
+    public Result<Page<T>> findAll(Pageable pageable) {
+        log.info("findAll - 分页查询. pageable={}", pageable);
+
+        return ResultGenerator.ok(service.findAll(pageable));
     }
 
     /**
-     * 根据实体ID集合进行查询
+     * 根据主键字段进行查询, 方法参数必须包含完整的主键属性, 查询条件使用等号
+     *
+     * @param id the id
+     * @return the t
+     */
+    @Operation(summary = "根据ID字段进行查询")
+    @GetMapping("/{id}")
+    public Result<T> findById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
+        log.info("findById - 根据Id查询. id={}", id);
+
+        return ResultGenerator.ok(service.findById(id));
+    }
+
+    /**
+     * 根据ID集合进行查询
      *
      * @param list the list
      * @return the list
      */
-    @Operation(summary = "根据实体ID集合进行查询")
-    @GetMapping("/list/by/id")
-    public Result<List<T>> findAllByIdList(List<I> list) {
-        log.info("findAllByIdList - 根据实体ID集合进行查询. list={}", list);
+    @Operation(summary = "根据ID集合进行查询")
+    @GetMapping("/all/by/id")
+    public Result<List<T>> findAllById(List<I> list) {
+        log.info("findAllById - 根据ID集合进行查询. list={}", list);
 
-        return ResultGenerator.ok(service.findAllByIdList(list));
+        return ResultGenerator.ok(service.findAllById(list));
+    }
+
+    /**
+     * 根据属性值进行查询, 查询条件使用等号
+     *
+     * @param example the example
+     * @return the list
+     */
+    @Operation(summary = "根据属性进行查询")
+    @GetMapping("/all/by/example")
+    public Result<List<T>> findAllByExample(T example) {
+        log.info("findAllByExample - 根据中的属性值进行查询. ");
+
+        return ResultGenerator.ok(service.findAllByExample(Example.of(example)));
+    }
+
+    /**
+     * 根据属性分页查询
+     *
+     * @param example  the example
+     * @param pageable the pageable
+     * @return the page
+     */
+    @Operation(summary = "根据属性分页查询")
+    @GetMapping(value = "/page/by/example")
+    public Result<Page<T>> findAllByExample(T example, Pageable pageable) {
+        log.info("findAllByExample - 根据属性分页查询. example={}, pageable={}", example, pageable);
+
+        return ResultGenerator.ok(service.findAllByExample(Example.of(example), pageable));
     }
 
     /**
@@ -106,45 +125,16 @@ public abstract class BaseQueryController<T, I> {
     }
 
     /**
-     * 根据实体中的属性查询总数, 查询条件使用等号
+     * 根据中的属性查询总数, 查询条件使用等号
      *
      * @param example the example
      * @return the int
      */
-    @Operation(summary = "根据实体中的属性查询总数")
+    @Operation(summary = "根据中的属性查询总数")
     @GetMapping("/count/by/example")
     public Result<Long> findCountByExample(T example) {
-        log.info("findCountByExample - 根据实体中的属性查询总数, 查询条件使用等号. example={}", example);
+        log.info("findCountByExample - 根据中的属性查询总数, 查询条件使用等号. example={}", example);
 
         return ResultGenerator.ok(service.findCountByExample(Example.of(example)));
-    }
-
-    /**
-     * 根据Pageable进行分页查询
-     *
-     * @param pageable the pageable
-     * @return the page
-     */
-    @Operation(summary = "根据Pageable进行分页查询")
-    @GetMapping(value = "/list/by/pageable")
-    public Result<Page<T>> findByPageable(Pageable pageable) {
-        log.info("findAllByPageable - 根据Pageable进行分页查询. pageable={}", pageable);
-
-        return ResultGenerator.ok(service.findAllByPageable(pageable));
-    }
-
-    /**
-     * 根据实体属性和Pageable进行分页查询
-     *
-     * @param example  the example
-     * @param pageable the pageable
-     * @return the page
-     */
-    @Operation(summary = "根据实体属性和Pageable进行分页查询")
-    @GetMapping(value = "/list/by/example/pageable")
-    public Result<Page<T>> findByExampleAndPageable(T example, Pageable pageable) {
-        log.info("findAllByExampleAndPageable - 根据实体属性和Pageable进行分页查询. example={}, pageable={}", example, pageable);
-
-        return ResultGenerator.ok(service.findAllByExampleAndPageable(Example.of(example), pageable));
     }
 }

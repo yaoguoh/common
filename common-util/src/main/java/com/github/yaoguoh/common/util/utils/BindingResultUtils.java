@@ -1,4 +1,4 @@
-package com.github.yaoguoh.common.util;
+package com.github.yaoguoh.common.util.utils;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindingResult;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  *
  * @author WYG
  */
-public class BindingResultUtil {
+public class BindingResultUtils {
 
     /**
      * Validate binding result.

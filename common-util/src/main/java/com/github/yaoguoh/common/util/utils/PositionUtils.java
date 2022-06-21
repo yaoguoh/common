@@ -1,4 +1,4 @@
-package com.github.yaoguoh.common.util;
+package com.github.yaoguoh.common.util.utils;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
