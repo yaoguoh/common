@@ -1,12 +1,16 @@
 package com.github.yaoguoh.common.doc.properties;
 
+import com.google.common.collect.Maps;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.util.Map;
 
 /**
  * The type Swagger properties.
  *
- * @author WYG
+ * @author yaoguohh
  */
 @Data
 @ConfigurationProperties("doc.info")
@@ -40,4 +44,9 @@ public class DocProperties {
      * 执照地址
      */
     private String licenseUrl  = "https://www.apache.org/licenses/LICENSE-2.0.html";
+
+    /**
+     * 全局安全配置
+     */
+    private Map<String, SecurityScheme> securitySchemes = Maps.newHashMap();
 }
