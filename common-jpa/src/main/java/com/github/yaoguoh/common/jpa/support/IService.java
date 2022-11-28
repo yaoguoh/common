@@ -3,6 +3,7 @@ package com.github.yaoguoh.common.jpa.support;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -83,6 +84,14 @@ public interface IService<T, ID> {
      * @return the list
      */
     List<T> findAll();
+
+    /**
+     * Find all list. 查询全部带排序
+     *
+     * @param sort the sort
+     * @return the page
+     */
+    List<T> findAll(Sort sort);
 
     /**
      * 根据Pageable进行分页查询

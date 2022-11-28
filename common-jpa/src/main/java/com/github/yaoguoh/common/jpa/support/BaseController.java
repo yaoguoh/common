@@ -34,7 +34,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @PostMapping(value = "/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<T> save(@RequestBody T domain) {
-        log.info("save - 新建. domain={}", domain);
+        log.debug("save - 新建. domain={}", domain);
 
         return ResultGenerator.ok(service.save(domain));
     }
@@ -49,7 +49,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @PostMapping(value = "/batch/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Result<List<T>> batchSave(@RequestBody List<T> list) {
-        log.info("batchSave - 批量保存. list={}", list);
+        log.debug("batchSave - 批量保存. list={}", list);
 
         return ResultGenerator.ok(service.batchSave(list));
     }
@@ -63,7 +63,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @Operation(summary = "更新")
     @PutMapping(value = "/update")
     public Result<T> update(@RequestBody T domain) {
-        log.info("update - 更新. domain={}", domain);
+        log.debug("update - 更新. domain={}", domain);
 
         return ResultGenerator.ok(service.update(domain));
     }
@@ -78,7 +78,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @Operation(summary = "根据ID删除")
     @DeleteMapping(value = "/{id}")
     public Result<Object> deleteById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
-        log.info("deleteById - 根据主键字段进行删除. id={}", id);
+        log.debug("deleteById - 根据主键字段进行删除. id={}", id);
 
         service.deleteById(id);
         return ResultGenerator.ok();
@@ -93,7 +93,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     @Operation(summary = "根据ID集合批量删除")
     @DeleteMapping(value = "/all")
     public Result<Object> deleteById(@RequestBody List<I> list) {
-        log.info("deleteById - 通过ID集合批量删除. list={}", list);
+        log.debug("deleteById - 通过ID集合批量删除. list={}", list);
 
         service.deleteById(list);
         return ResultGenerator.ok();

@@ -5,12 +5,14 @@ import com.github.yaoguoh.common.util.result.Result;
 import com.github.yaoguoh.common.util.result.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 
 /**
@@ -33,7 +35,6 @@ public class GlobalExceptionHandler {
     public @ResponseBody
     Result<Object> handleBusinessException(BusinessException e) {
         log.error("handleBusinessException {}", e.getMessage());
-        e.printStackTrace();
 
         return ResultGenerator.wrap(e.getCode(), e.getMessage());
     }
@@ -49,17 +50,32 @@ public class GlobalExceptionHandler {
     public @ResponseBody
     Result<Object> handleBindException(BindException e) {
         log.error("BindException {}", e.getMessage());
-        e.printStackTrace();
 
         StringBuilder stringBuilder = new StringBuilder();
         for (FieldError fieldError : e.getFieldErrors()) {
             stringBuilder.append(fieldError.getDefaultMessage());
         }
-        return ResultGenerator.wrap(400, stringBuilder.toString());
+        return ResultGenerator.wrap(HttpStatus.BAD_REQUEST.value(), stringBuilder.toString());
     }
 
     /**
-     * 全局异常处理器，线上环境使用
+     * Response status exception result.
+     *
+     * @param e the e
+     * @return the response entity
+     */
+    @ExceptionHandler(ResponseStatusException.class)
+    public @ResponseBody
+    ResponseEntity<Result<Object>> handleResponseStatusException(ResponseStatusException e) {
+        log.error("Exception {}", e.getMessage());
+
+        return ResponseEntity
+                .status(e.getStatus())
+                .body(ResultGenerator.wrap(e.getStatus().value(), e.getReason()));
+    }
+
+    /**
+     * Global exception handler
      *
      * @param e the e
      * @return the result

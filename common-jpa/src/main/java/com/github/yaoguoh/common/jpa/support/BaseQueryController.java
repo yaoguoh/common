@@ -35,7 +35,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "查询全部")
     @GetMapping("/all")
     public Result<List<T>> findAll() {
-        log.info("findAll - 查询全部结果");
+        log.debug("findAll - 查询全部结果");
 
         return ResultGenerator.ok(service.findAll());
     }
@@ -49,7 +49,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "分页查询")
     @GetMapping(value = "/page")
     public Result<Page<T>> findAll(Pageable pageable) {
-        log.info("findAll - 分页查询. pageable={}", pageable);
+        log.debug("findAll - 分页查询. pageable={}", pageable);
 
         return ResultGenerator.ok(service.findAll(pageable));
     }
@@ -63,7 +63,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "根据ID字段进行查询")
     @GetMapping("/{id}")
     public Result<T> findById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
-        log.info("findById - 根据Id查询. id={}", id);
+        log.debug("findById - 根据Id查询. id={}", id);
 
         return ResultGenerator.ok(service.findById(id));
     }
@@ -77,7 +77,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "根据ID集合进行查询")
     @GetMapping("/all/by/id")
     public Result<List<T>> findAllById(List<I> list) {
-        log.info("findAllById - 根据ID集合进行查询. list={}", list);
+        log.debug("findAllById - 根据ID集合进行查询. list={}", list);
 
         return ResultGenerator.ok(service.findAllById(list));
     }
@@ -91,7 +91,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "根据属性进行查询")
     @GetMapping("/all/by/example")
     public Result<List<T>> findAllByExample(T example) {
-        log.info("findAllByExample - 根据中的属性值进行查询. ");
+        log.debug("findAllByExample - 根据中的属性值进行查询. ");
 
         return ResultGenerator.ok(service.findAllByExample(Example.of(example)));
     }
@@ -106,7 +106,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "根据属性分页查询")
     @GetMapping(value = "/page/by/example")
     public Result<Page<T>> findAllByExample(T example, Pageable pageable) {
-        log.info("findAllByExample - 根据属性分页查询. example={}, pageable={}", example, pageable);
+        log.debug("findAllByExample - 根据属性分页查询. example={}, pageable={}", example, pageable);
 
         return ResultGenerator.ok(service.findAllByExample(Example.of(example), pageable));
     }
@@ -119,7 +119,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "查询总数")
     @GetMapping("/count")
     public Result<Long> findCount() {
-        log.info("findCount - 查询总数. ");
+        log.debug("findCount - 查询总数. ");
 
         return ResultGenerator.ok(service.findCount());
     }
@@ -133,7 +133,7 @@ public abstract class BaseQueryController<T, I> {
     @Operation(summary = "根据中的属性查询总数")
     @GetMapping("/count/by/example")
     public Result<Long> findCountByExample(T example) {
-        log.info("findCountByExample - 根据中的属性查询总数, 查询条件使用等号. example={}", example);
+        log.debug("findCountByExample - 根据中的属性查询总数, 查询条件使用等号. example={}", example);
 
         return ResultGenerator.ok(service.findCountByExample(Example.of(example)));
     }
