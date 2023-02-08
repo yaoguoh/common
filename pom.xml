@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>2.7.6</version>
+    <version>2.7.8</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -48,25 +48,27 @@
     </modules>
 
     <properties>
-        <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>2.7.6</common.version>
-        <spring-boot.version>2.7.6</spring-boot.version>
+        <common.version>2.7.8</common.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
-        <spring-boot-admin.version>2.7.6</spring-boot-admin.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+
         <commons-io.version>2.11.0</commons-io.version>
         <commons-text.version>1.9</commons-text.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
         <commons-compress.version>1.21</commons-compress.version>
         <commons-configuration2.version>2.8.0</commons-configuration2.version>
-        <fastjson.version>2.0.19</fastjson.version>
+        <elasticsearch.version>8.5.3</elasticsearch.version>
+        <springdoc.version>1.6.13</springdoc.version>
+        <fastjson.version>2.0.23</fastjson.version>
+        <xxl-job.version>2.3.0</xxl-job.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.8.10</hutool.version>
+        <hutool.version>5.8.11</hutool.version>
         <poi.version>5.2.3</poi.version>
     </properties>
 
@@ -88,21 +90,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- SpringCloudAlibaba Dependencies -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- SpringBoot Admin Client-->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
-            </dependency>
-
             <!-- common start -->
             <dependency>
                 <groupId>com.github.yaoguoh</groupId>
@@ -187,6 +174,29 @@
                 <artifactId>commons-configuration2</artifactId>
                 <version>${commons-configuration2.version}</version>
             </dependency>
+            <!-- SpringDoc -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <!-- Elasticsearch start -->
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <!-- Elasticsearch end -->
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
             <!-- Fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -240,8 +250,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>17</source>
+                    <target>17</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
