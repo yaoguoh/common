@@ -33,35 +33,20 @@
 ### example
 
 ```java
-/**
- * 消息管理 REST API
- */
-@Api(tags = "消息管理 REST API")
-@Slf4j
-@AllArgsConstructor
-@RestController
-@RequestMapping(value = "/message")
-public class MessageController {
-
-    private final MessageService messageService;
-
+public class ExampleController {
     /**
-     * 根据消息ID查询消息信息
+     * 查询用户角色列表
      *
-     * @param messageId the message id
+     * @param realm  the realm
+     * @param userId the user id
      * @return the result
      */
-    @ApiOperation(value = "根据消息ID查询消息信息")
-    @GetMapping(value = "/{messageId}")
-    public Result<MessageVo> findByMessageId(@ApiParam(name = "messageId", value = "消息ID") @PathVariable Long messageId) {
-        log.info("findByMessageId - 根据消息ID查询消息信息. messageId={}", messageId);
+    @Operation(summary = "查询用户角色列表")
+    @GetMapping(value = "/{userId}/roles")
+    public Result<List<IdNameVO>> findUserRoles(@RequestHeader("realm") String realm, @Parameter(name = "userId", description = "用户ID（唯一标识）", required = true) @PathVariable("userId") String userId) {
+        log.debug("findUserRoles - 查询用户角色列表. realm = [{}] username = [{}]", realm, userId);
 
-        try {
-            return ResultGenerator.ok(MessageVo.create(messageService.findById(messageId)));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultGenerator.wrap(e);
-        }
+        return ResultGenerator.ok(userService.findUserRoles(realm, userId));
     }
 }
 ```
@@ -182,35 +167,24 @@ public class UserServiceImpl extends BaseService<User, Long> implements UserServ
 ```xml
 
 <dependencies>
-    <!--eureka 客户端-->
+    <!-- Consul -->
     <dependency>
         <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        <artifactId>spring-cloud-starter-consul-discovery</artifactId>
     </dependency>
-    <!--监控-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-consul-config</artifactId>
+    </dependency>
+    <!-- Bootstrap -->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    </dependency>
+    <!-- Actuator -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <!--监控客户端-->
-    <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-starter-client</artifactId>
-        <version>${spring-boot-admin.version}</version>
-    </dependency>
-    <!-- 配置中心客户端-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-config</artifactId>
-    </dependency>
-    <!--服务链路追踪-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-sleuth</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-sleuth-zipkin</artifactId>
     </dependency>
 </dependencies>
 ```
@@ -292,11 +266,11 @@ job:
     address:
     ip:
     port: 0
-    log-path: /tmp/data
-    log-retention-days: 30
+    auditLog-path: /tmp/data
+    auditLog-retention-days: 30
 ```
 
-## common-job
+## common-log
 
 ### pom
 
@@ -308,28 +282,25 @@ job:
 </dependency>
 ```
 
-### 自定义`EnableJpaRepositories`时需添加`basePackages`
-
-```java
-
-@EnableJpaRepositories(basePackages = {"com.github.yaoguoh.common.log.repository"})
-public class ProviderConfiguration {
-
-}
-```
-
-### example
+### example @Log
 
 ```java
 public class ExampleController {
+    /**
+     * 用户创建
+     *
+     * @param realm   the realm
+     * @param userDTO the user dto
+     * @return the result
+     */
+    @Log(module = "用户管理", businessType = BusinessType.INSERT)
+    @Operation(summary = "用户创建")
+    @PostMapping("/create")
+    public Result<Object> create(@RequestHeader("realm") String realm, @RequestBody UserDTO userDTO) {
+        log.debug("create - 用户创建. realm=[{}] UserDTO=[{}]", realm, userDTO);
 
+        userService.create(realm, userDTO);
+        return ResultGenerator.ok();
+    }
 }
 ```
-
-## Sponsor
-
--
-
-JetBrains [https://www.jetbrains.com/?from=common](https://www.jetbrains.com) ![image](https://www.jetbrains.com/idea/img/idea-edu.svg)
-
-![image](https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true)
