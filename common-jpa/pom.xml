@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.7.8</version>
+        <version>2.7.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -52,11 +52,11 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <compilerArguments>
+                        <compilerArgs>
                             <processor>
                                 lombok.launch.AnnotationProcessorHider$AnnotationProcessor,org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor
                             </processor>
-                        </compilerArguments>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
             </plugins>

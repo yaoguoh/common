@@ -34,7 +34,7 @@ public class Result<T> implements Serializable {
     /**
      * 错误码：参数非法
      */
-    public static final  int    ILLEGAL_ARGUMENT_CODE    = 100;
+    public static final  int    ILLEGAL_ARGUMENT_CODE    = 400;
     /**
      * 错误信息：参数非法
      */

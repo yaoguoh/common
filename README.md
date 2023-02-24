@@ -8,7 +8,7 @@
     <dependency>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.7.8</version>
+        <version>2.7.9</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
