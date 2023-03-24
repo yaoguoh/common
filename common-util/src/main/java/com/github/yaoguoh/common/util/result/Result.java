@@ -3,6 +3,7 @@ package com.github.yaoguoh.common.util.result;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 
@@ -42,6 +43,7 @@ public class Result<T> implements Serializable {
     /**
      * 序列化标识
      */
+    @Serial
     private static final long   serialVersionUID         = 4893280118017319089L;
 
     /**
@@ -138,7 +140,7 @@ public class Result<T> implements Serializable {
      */
     @JSONField(serialize = false)
     public boolean error() {
-        return !success();
+        return !this.success();
     }
 
 }

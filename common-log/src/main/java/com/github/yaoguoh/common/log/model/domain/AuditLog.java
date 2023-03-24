@@ -1,5 +1,6 @@
 package com.github.yaoguoh.common.log.model.domain;
 
+import com.github.yaoguoh.common.log.enums.BusinessType;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.data.annotation.CreatedBy;
@@ -32,63 +33,64 @@ public class AuditLog implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long    id;
+    private Long         id;
     /**
      * 服务名称
      */
-    private String  provider;
+    private String       provider;
     /**
      * 操作模块
      */
-    private String  module;
+    private String       module;
     /**
-     * 业务类型（0=其它,1=新增,2=修改,3=删除,4=授权,5=导出,6=导入,7=强退）
+     * 业务了类型
      */
-    private Integer businessType;
+    @Enumerated(EnumType.STRING)
+    private BusinessType businessType;
     /**
      * 请求url
      */
     @Column(name = "`url`", length = 2550)
-    private String  url;
+    private String       url;
     /**
      * 请求参数
      */
     @Column(length = 2550)
-    private String  param;
+    private String       param;
     /**
      * HTTP 请求方式
      */
-    private String  httpMethod;
+    private String       httpMethod;
     /**
      * JAVA 方法
      */
-    private String  classMethod;
+    private String       classMethod;
     /**
      * 操作人IP
      */
-    private String  operatorIp;
+    private String       operatorIp;
     /**
      * 操作人地址
      */
-    private String  operatorAddress;
+    private String       operatorAddress;
     /**
      * 返回数据
      */
     @Column(length = 2550)
-    private String  result;
+    private String       result;
     /**
      * 执行用时
      */
-    private Long    processTime;
+    private Long         processTime;
     /**
      * 操作状态（true 正常 false异常）
      */
-    private Boolean status;
+    private Boolean      status;
     /**
      * 错误信息
      */
     @Column(length = 2550)
-    private String  errorMessage;
+    private String       errorMessage;
 
     /**
      * 创建人

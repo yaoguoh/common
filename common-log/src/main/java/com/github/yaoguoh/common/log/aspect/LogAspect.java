@@ -17,6 +17,8 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
@@ -39,6 +41,7 @@ import java.util.Objects;
 @Component
 @AllArgsConstructor
 public class LogAspect {
+    private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     private static final String SPRING_APPLICATION_NAME = "spring.application.name";
 
@@ -69,7 +72,7 @@ public class LogAspect {
         AuditLog.AuditLogBuilder auditLogBuilder = AuditLog.builder()
                 .provider(environment.getProperty(SPRING_APPLICATION_NAME))
                 .module(log.module())
-                .businessType(log.businessType().ordinal())
+                .businessType(log.businessType())
                 .url(request.getRequestURL().toString())
                 .httpMethod(request.getMethod())
                 .classMethod(String.format("%s.%s", signature.getDeclaringTypeName(), signature.getName()))
@@ -78,13 +81,18 @@ public class LogAspect {
                 .status(true)
                 .result(objectMapper.writeValueAsString(proceedResult))
                 .processTime(System.currentTimeMillis() - start);
+
         if (log.saveRequestData()) {
             auditLogBuilder.param(objectMapper.writeValueAsString(this.getRequestParams(proceedingJoinPoint)));
         }
         if (log.saveResponseData()) {
             auditLogBuilder.result(objectMapper.writeValueAsString(proceedResult));
         }
-        auditLogService.saveLog(auditLogBuilder.build());
+        AuditLog auditLog = auditLogBuilder.build();
+        if (log.saveToDatabase()) {
+            auditLogService.saveLog(auditLog);
+        }
+        logger.debug("REQUEST INFO : [{}]", auditLog);
         return proceedResult;
     }
 
@@ -107,7 +115,7 @@ public class LogAspect {
         final AuditLog commonRequestAuditLog = AuditLog.builder()
                 .provider(environment.getProperty(SPRING_APPLICATION_NAME))
                 .module(log.module())
-                .businessType(log.businessType().ordinal())
+                .businessType(log.businessType())
                 .url(request.getRequestURL().toString())
                 .param(objectMapper.writeValueAsString(this.getRequestParams(joinPoint)))
                 .httpMethod(request.getMethod())
@@ -132,8 +140,7 @@ public class LogAspect {
             if (o instanceof ServletRequest || o instanceof ServletResponse || o instanceof BindingResult) {
                 continue;
             }
-            if (o instanceof MultipartFile) {
-                MultipartFile file = (MultipartFile) o;
+            if (o instanceof MultipartFile file) {
                 o = file.getOriginalFilename();
             }
             requestParams.put(paramNames[i], o);

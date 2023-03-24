@@ -40,4 +40,11 @@ public @interface Log {
      * @return the boolean
      */
     boolean saveResponseData() default true;
+
+    /**
+     * 是否保存到数据库
+     *
+     * @return the boolean
+     */
+    boolean saveToDatabase() default true;
 }
