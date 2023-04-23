@@ -1,12 +1,15 @@
 package com.github.yaoguoh.common.log.aspect;
 
-import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.extra.servlet.JakartaServletUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.yaoguoh.common.log.annotation.Log;
 import com.github.yaoguoh.common.log.model.domain.AuditLog;
 import com.github.yaoguoh.common.log.service.AuditLogService;
 import com.github.yaoguoh.common.util.utils.PositionUtils;
 import com.google.common.collect.Maps;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
@@ -26,9 +29,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Objects;
 
@@ -68,7 +68,7 @@ public class LogAspect {
         // proceed
         Object proceedResult = proceedingJoinPoint.proceed();
         // after
-        String ip = ServletUtil.getClientIP(request);
+        String ip = JakartaServletUtil.getClientIP(request);
         AuditLog.AuditLogBuilder auditLogBuilder = AuditLog.builder()
                 .provider(environment.getProperty(SPRING_APPLICATION_NAME))
                 .module(log.module())
@@ -111,7 +111,7 @@ public class LogAspect {
         HttpServletRequest       request    = Objects.requireNonNull(attributes).getRequest();
         Signature                signature  = joinPoint.getSignature();
         // position
-        String ip = ServletUtil.getClientIP(request);
+        String ip = JakartaServletUtil.getClientIP(request);
         final AuditLog commonRequestAuditLog = AuditLog.builder()
                 .provider(environment.getProperty(SPRING_APPLICATION_NAME))
                 .module(log.module())

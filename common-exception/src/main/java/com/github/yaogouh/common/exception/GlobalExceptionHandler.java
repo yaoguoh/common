@@ -70,12 +70,12 @@ public class GlobalExceptionHandler {
         log.error("Exception {}", e.getMessage());
 
         return ResponseEntity
-                .status(e.getStatus())
-                .body(ResultGenerator.wrap(e.getStatus().value(), e.getReason()));
+                .status(e.getStatusCode())
+                .body(ResultGenerator.wrap(e.getStatusCode().value(), e.getReason()));
     }
 
     /**
-     * Global exception handler
+     * 全局异常处理器
      *
      * @param e the e
      * @return the result

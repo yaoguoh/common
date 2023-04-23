@@ -6,6 +6,7 @@ import com.github.yaoguoh.common.log.model.domain.AuditLog_;
 import com.github.yaoguoh.common.log.model.dto.QueryAuditLogDTO;
 import com.github.yaoguoh.common.log.repository.AuditLogRepository;
 import com.github.yaoguoh.common.log.service.AuditLogService;
+import jakarta.persistence.criteria.Predicate;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.Predicate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +72,7 @@ public class AuditLogServiceImpl extends BaseService<AuditLog, Long> implements 
             }
             // 业务类型
             if (ObjectUtils.isNotEmpty(queryAuditLogDTO.getBusinessType())) {
-                predicates.add(criteriaBuilder.equal(root.get(AuditLog_.businessType), queryAuditLogDTO.getBusinessType().ordinal()));
+                predicates.add(criteriaBuilder.equal(root.get(AuditLog_.businessType), queryAuditLogDTO.getBusinessType()));
             }
             // 操作状态
             if (ObjectUtils.isNotEmpty(queryAuditLogDTO.getStatus())) {

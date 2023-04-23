@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.yaoguoh</groupId>
         <artifactId>common</artifactId>
-        <version>2.7.10</version>
+        <version>3.0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -40,22 +40,8 @@
         </dependency>
         <!-- 元模型 -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <!-- QueryDSL -->
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -67,7 +53,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
                         <annotationProcessors>
-                            lombok.launch.AnnotationProcessorHider$AnnotationProcessor,org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor,com.querydsl.apt.jpa.JPAAnnotationProcessor
+                            lombok.launch.AnnotationProcessorHider$AnnotationProcessor,org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor
                         </annotationProcessors>
                     </configuration>
                 </plugin>

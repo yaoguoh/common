@@ -10,7 +10,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -76,6 +76,6 @@ public class DocConfiguration {
         return components.getSecuritySchemes().keySet()
                 .stream()
                 .map(key -> new SecurityRequirement().addList(key))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
