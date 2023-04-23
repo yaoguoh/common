@@ -66,7 +66,7 @@
         <elasticsearch.version>8.6.2</elasticsearch.version>
         <springdoc.version>1.6.15</springdoc.version>
         <fastjson.version>2.0.26</fastjson.version>
-        <xxl-job.version>2.3.0</xxl-job.version>
+        <xxl-job.version>2.3.1</xxl-job.version>
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.15</hutool.version>
         <poi.version>5.2.3</poi.version>
