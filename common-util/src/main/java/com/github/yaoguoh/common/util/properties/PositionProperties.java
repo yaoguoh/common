@@ -9,12 +9,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author yaoguohh
  */
 @Data
-@ConfigurationProperties(prefix = "position")
+@ConfigurationProperties(prefix = "util.position")
 public class PositionProperties {
 
-    private Amap amap = new Amap();
-
-    private Taobao taobao = new Taobao();
+    private Amap      amap      = new Amap();
+    private Taobao    taobao    = new Taobao();
+    private Ip2region ip2region = new Ip2region();
 
     /**
      * 高德通过IP查询地址接口配置
@@ -52,5 +52,20 @@ public class PositionProperties {
          * 请求超时时间（毫秒）
          */
         private int    timeout   = 3000;
+    }
+
+    /**
+     * ip2region
+     */
+    @Data
+    public static class Ip2region {
+        /**
+         * IP数据Url
+         */
+        private String xdbUrl   = "https://github.com/lionsoul2014/ip2region/raw/master/data/ip2region.xdb";
+        /**
+         * 保存数据到本地文件目录
+         */
+        private String savePath = "data/ip2region.xdb";
     }
 }
