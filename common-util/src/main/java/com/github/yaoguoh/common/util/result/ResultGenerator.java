@@ -133,4 +133,25 @@ public class ResultGenerator {
     public static <E> Result<E> ok(E o) {
         return new Result<>(Result.SUCCESS_CODE, Result.SUCCESS_MESSAGE, o);
     }
+
+    /**
+     * Success result.
+     *
+     * @param <E> the type parameter
+     * @return the result
+     */
+    public static <E> Result<E> success() {
+        return new Result<>();
+    }
+
+    /**
+     * Success result.
+     *
+     * @param <E> the type parameter
+     * @param o   the o
+     * @return the result
+     */
+    public static <E> Result<E> success(E o) {
+        return new Result<>(Result.SUCCESS_CODE, Result.SUCCESS_MESSAGE, o);
+    }
 }

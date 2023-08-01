@@ -6,6 +6,9 @@ import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
+/**
+ * The interface Phone.
+ */
 @Documented
 @Constraint(validatedBy = PhoneValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})

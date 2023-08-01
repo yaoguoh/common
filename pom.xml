@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>3.0.8</version>
+    <version>3.0.9</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -51,25 +51,27 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <maven.plugin.validation>verbose</maven.plugin.validation>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>3.0.8</common.version>
-        <spring-boot.version>3.0.8</spring-boot.version>
+        <common.version>3.0.9</common.version>
+        <spring-boot.version>3.0.9</spring-boot.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
 
-        <commons-io.version>2.11.0</commons-io.version>
+        <commons-io.version>2.13.0</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
-        <commons-compress.version>1.22</commons-compress.version>
-        <commons-configuration2.version>2.8.0</commons-configuration2.version>
-        <elasticsearch.version>8.8.1</elasticsearch.version>
+        <commons-compress.version>1.23.0</commons-compress.version>
+        <commons-configuration2.version>2.9.0</commons-configuration2.version>
+        <elasticsearch.version>8.9.0</elasticsearch.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <springdoc.version>2.1.0</springdoc.version>
         <ip2region.version>2.7.0</ip2region.version>
-        <fastjson.version>2.0.33</fastjson.version>
+        <fastjson.version>2.0.38</fastjson.version>
         <xxl-job.version>2.3.0</xxl-job.version>
-        <guava.version>32.0.1-jre</guava.version>
-        <hutool.version>5.8.20</hutool.version>
+        <guava.version>32.1.1-jre</guava.version>
+        <hutool.version>5.8.21</hutool.version>
         <poi.version>5.2.3</poi.version>
     </properties>
 
@@ -174,6 +176,17 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-configuration2</artifactId>
                 <version>${commons-configuration2.version}</version>
+            </dependency>
+            <!-- MapStruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
             <!-- SpringDoc -->
             <dependency>

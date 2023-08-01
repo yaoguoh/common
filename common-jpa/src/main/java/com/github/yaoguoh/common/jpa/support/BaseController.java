@@ -36,7 +36,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     public Result<T> save(@RequestBody T domain) {
         log.debug("save - 新建. domain={}", domain);
 
-        return ResultGenerator.ok(service.save(domain));
+        return ResultGenerator.success(service.save(domain));
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     public Result<List<T>> batchSave(@RequestBody List<T> list) {
         log.debug("batchSave - 批量保存. list={}", list);
 
-        return ResultGenerator.ok(service.batchSave(list));
+        return ResultGenerator.success(service.batchSave(list));
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
     public Result<T> update(@RequestBody T domain) {
         log.debug("update - 更新. domain={}", domain);
 
-        return ResultGenerator.ok(service.update(domain));
+        return ResultGenerator.success(service.update(domain));
     }
 
 
@@ -81,7 +81,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
         log.debug("deleteById - 根据主键字段进行删除. id={}", id);
 
         service.deleteById(id);
-        return ResultGenerator.ok();
+        return ResultGenerator.success();
     }
 
     /**
@@ -96,6 +96,6 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
         log.debug("deleteById - 通过ID集合批量删除. list={}", list);
 
         service.deleteById(list);
-        return ResultGenerator.ok();
+        return ResultGenerator.success();
     }
 }

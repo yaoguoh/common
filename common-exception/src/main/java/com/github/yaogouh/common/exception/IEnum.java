@@ -1,7 +1,7 @@
 package com.github.yaogouh.common.exception;
 
 /**
- * 枚举跟接口（泛型使用）
+ * 枚举根接口（泛型使用）
  *
  * @author WYG
  */
