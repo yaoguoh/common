@@ -151,18 +151,14 @@ public class LogAspect {
     }
 
     private String address(String ip) {
-        try {
-            return positionUtils.ip2regionPosition(ip)
-                    .map(result -> StringUtils.replace(result, "0|", ""))
-                    .orElse(null);
-        } catch (Exception e) {
-            log.warn("Ip2region获取IP失败，使用Taobao重新获取.");
-            return positionUtils.taobaoPosition(ip)
-                    .map(vo -> String.format("%s|%s|%s",
-                            StringUtils.defaultIfBlank(vo.getCountry(), ""),
-                            StringUtils.defaultIfBlank(vo.getRegion(), ""),
-                            StringUtils.defaultIfBlank(vo.getCity(), "")))
-                    .orElse("");
-        }
+        return positionUtils.ip2regionPosition(ip)
+                .map(result -> StringUtils.replace(result, "0", "未知"))
+                .orElseGet(() -> positionUtils.taobaoPosition(ip)
+                        .map(vo -> String.format("%s|%s|%s",
+                                StringUtils.defaultIfBlank(vo.getCountry(), ""),
+                                StringUtils.defaultIfBlank(vo.getRegion(), ""),
+                                StringUtils.defaultIfBlank(vo.getCity(), "")))
+                        .orElse("未知地址")
+                );
     }
 }

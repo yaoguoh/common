@@ -60,11 +60,14 @@ public class PositionProperties {
     @Data
     public static class Ip2region {
         /**
-         * IP数据Url
+         * URL for IP data file (ip2region.xdb).
+         * Original source: <a href="https://github.com/lionsoul2014/ip2region/raw/master/data/ip2region.xdb"/>
+         * This URL uses mirror.ghproxy.com for faster downloading, which acts as a proxy for GitHub resources.
          */
-        private String xdbUrl   = "https://github.com/lionsoul2014/ip2region/raw/master/data/ip2region.xdb";
+        private String xdbUrl = "https://mirror.ghproxy.com/https://github.com/lionsoul2014/ip2region/raw/master/data/ip2region.xdb";
+
         /**
-         * 保存数据到本地文件目录
+         * Local file path to save the downloaded ip2region.xdb data file.
          */
         private String savePath = "data/ip2region.xdb";
     }

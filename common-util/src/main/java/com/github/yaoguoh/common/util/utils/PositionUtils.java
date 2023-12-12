@@ -70,7 +70,7 @@ public class PositionUtils {
      * @param ip the ip
      * @return the amap address vo
      */
-    @Cacheable(cacheNames = "amap_position", key = "#ip")
+    @Cacheable(cacheNames = "amap_position", key = "#ip", unless = "#result.isEmpty()")
     public Optional<AmapPositionVO> amapPosition(String ip) {
         PositionProperties.Amap amap = positionProperties.getAmap();
         try {
@@ -81,7 +81,7 @@ public class PositionUtils {
                 return Optional.of(amapPositionVO);
             }
         } catch (Exception e) {
-            log.error("AMAP 获取定位失败. Error = [{}]", e.getMessage());
+            log.error("AMAP 获取定位失败. IP = [{}] Error = [{}]", ip, e.getMessage());
         }
         return Optional.empty();
     }
@@ -92,7 +92,7 @@ public class PositionUtils {
      * @param ip the ip
      * @return the amap address vo
      */
-    @Cacheable(cacheNames = "tao_position", key = "#ip")
+    @Cacheable(cacheNames = "tao_position", key = "#ip", unless = "#result.isEmpty()")
     public Optional<TaobaoPositionVO> taobaoPosition(String ip) {
         PositionProperties.Taobao taobao = positionProperties.getTaobao();
         try {
@@ -103,7 +103,7 @@ public class PositionUtils {
                 return Optional.of(jsonObject.getJSONObject("data").toJavaObject(TaobaoPositionVO.class));
             }
         } catch (Exception e) {
-            log.warn("Taobao 获取定位失败. Error = [{}]", e.getMessage());
+            log.warn("Taobao 获取定位失败. IP = [{}] Error = [{}]", ip, e.getMessage());
         }
         return Optional.empty();
     }
@@ -114,13 +114,13 @@ public class PositionUtils {
      * @param ip the ip
      * @return the amap address vo
      */
-    @Cacheable(cacheNames = "ip2region_position", key = "#ip")
+    @Cacheable(cacheNames = "ip2region_position", key = "#ip", unless = "#result.isEmpty()")
     public Optional<String> ip2regionPosition(String ip) {
         try {
             Searcher searcher = Searcher.newWithVectorIndex(ip2regionPath, ip2regionIndex);
             return Optional.of(searcher.search(ip));
         } catch (Exception e) {
-            log.warn("Ip2region 获取定位失败. failed to create content cached searcher: {}", e.getMessage());
+            log.warn("Ip2region 获取定位失败. IP = [{}] Error = [{}]", ip, e.getMessage());
         }
         return Optional.empty();
     }
