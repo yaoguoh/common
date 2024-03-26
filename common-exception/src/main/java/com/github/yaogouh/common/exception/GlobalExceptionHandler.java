@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The type Global exception handler.
- *
- * @author yaoguoh
  */
 @Slf4j
 @ControllerAdvice
@@ -32,11 +32,8 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BusinessException.class)
-    public @ResponseBody
-    Result<Object> handleBusinessException(BusinessException e) {
-        log.error("handleBusinessException {}", e.getMessage());
-
-        return ResultGenerator.wrap(e.getCode(), e.getMessage());
+    public @ResponseBody Result<Object> handleBusinessException(BusinessException e) {
+        return logAndWrapException(HttpStatus.BAD_REQUEST, e.getCode(), e.getMessage(), e);
     }
 
     /**
@@ -47,46 +44,42 @@ public class GlobalExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
-    public @ResponseBody
-    Result<Object> handleBindException(BindException e) {
-        log.error("BindException {}", e.getMessage());
-
-        StringBuilder stringBuilder = new StringBuilder();
+    public @ResponseBody Result<Object> handleBindException(BindException e) {
+        Map<String, String> errors = new HashMap<>();
         for (FieldError fieldError : e.getFieldErrors()) {
-            stringBuilder.append(fieldError.getDefaultMessage());
+            errors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        return ResultGenerator.wrap(HttpStatus.BAD_REQUEST.value(), stringBuilder.toString());
+        return logAndWrapException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(), errors.toString(), e);
     }
 
     /**
-     * Response status exception result.
+     * Handle response status exception response entity.
      *
      * @param e the e
      * @return the response entity
      */
     @ExceptionHandler(ResponseStatusException.class)
-    public @ResponseBody
-    ResponseEntity<Result<Object>> handleResponseStatusException(ResponseStatusException e) {
-        log.error("Exception {}", e.getMessage());
-
+    public @ResponseBody ResponseEntity<Result<Object>> handleResponseStatusException(ResponseStatusException e) {
+        log.error("ResponseStatusException {}", e.getMessage(), e);
         return ResponseEntity
                 .status(e.getStatusCode())
                 .body(ResultGenerator.wrap(e.getStatusCode().value(), e.getReason()));
     }
 
     /**
-     * 全局异常处理器
+     * Handle exception result.
      *
      * @param e the e
      * @return the result
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(RuntimeException.class)
-    public @ResponseBody
-    Result<Object> handleException(RuntimeException e) {
-        log.error("Exception {}", e.getMessage());
-        e.printStackTrace();
+    @ExceptionHandler(Exception.class)
+    public @ResponseBody Result<Object> handleException(Exception e) {
+        return logAndWrapException(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+    }
 
-        return ResultGenerator.wrap(500, e.getMessage());
+    private Result<Object> logAndWrapException(HttpStatus status, int code, String message, Exception e) {
+        log.error("{} {}", status, message, e);
+        return ResultGenerator.wrap(code, message);
     }
 }
