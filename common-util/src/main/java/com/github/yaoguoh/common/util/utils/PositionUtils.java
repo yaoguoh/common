@@ -10,6 +10,7 @@ import com.github.yaoguoh.common.util.properties.PositionProperties;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.lionsoul.ip2region.xdb.Searcher;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.Cacheable;
@@ -114,14 +115,20 @@ public class PositionUtils {
      * @param ip the ip
      * @return the amap address vo
      */
-    @Cacheable(cacheNames = "ip2region_position", key = "#ip", unless = "#result.isEmpty()")
+    @Cacheable(cacheNames = {"ip2region_position"}, key = "#ip", unless = "#result.isEmpty()")
     public Optional<String> ip2regionPosition(String ip) {
-        try {
-            Searcher searcher = Searcher.newWithVectorIndex(ip2regionPath, ip2regionIndex);
-            return Optional.of(searcher.search(ip));
-        } catch (Exception e) {
-            log.warn("Ip2region 获取定位失败. IP = [{}] Error = [{}]", ip, e.getMessage());
+        log.debug("ip2regionPosition called with IP: {}", ip);
+        if (StringUtils.isEmpty(ip)) {
+            log.warn("IP address is null or empty, returning empty result");
+            return Optional.empty();
         }
-        return Optional.empty();
+        try {
+            Searcher searcher = Searcher.newWithVectorIndex(this.ip2regionPath, this.ip2regionIndex);
+            String   result   = searcher.search(ip);
+            return Optional.ofNullable(result);
+        } catch (Exception e) {
+            log.warn("Ip2region 获取定位失败. IP = [{}] Error = [{}]", ip, e.getMessage(), e);
+            return Optional.empty();
+        }
     }
 }
