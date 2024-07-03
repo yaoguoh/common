@@ -77,7 +77,7 @@ public abstract class BaseController<T, I> extends BaseQueryController<T, I> {
      */
     @Operation(summary = "根据ID删除")
     @DeleteMapping(value = "/{id}")
-    public Result<Object> deleteById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
+    public Result<Object> deleteById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable(name = "id") I id) {
         log.debug("deleteById - 根据主键字段进行删除. id={}", id);
 
         service.deleteById(id);

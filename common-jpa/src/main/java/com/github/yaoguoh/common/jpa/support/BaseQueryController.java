@@ -62,7 +62,7 @@ public abstract class BaseQueryController<T, I> {
      */
     @Operation(summary = "根据ID字段进行查询")
     @GetMapping("/{id}")
-    public Result<T> findById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable I id) {
+    public Result<T> findById(@Parameter(name = "id", description = "ID", example = "0", required = true) @PathVariable(name = "id") I id) {
         log.debug("findById - 根据Id查询. id={}", id);
 
         return ResultGenerator.ok(service.findById(id));
