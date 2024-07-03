@@ -44,7 +44,7 @@ public class Result<T> implements Serializable {
      * 序列化标识
      */
     @Serial
-    private static final long   serialVersionUID         = 4893280118017319089L;
+    private static final long   serialVersionUID         = 4893280118021319089L;
 
     /**
      * 编号.
