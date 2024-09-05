@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>3.2.9</version>
+    <version>3.3.3</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -54,8 +54,8 @@
         <maven.plugin.validation>verbose</maven.plugin.validation>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>3.2.9</common.version>
-        <spring-boot.version>3.2.9</spring-boot.version>
+        <common.version>3.3.3</common.version>
+        <spring-boot.version>3.3.3</spring-boot.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
 
         <commons-io.version>2.16.1</commons-io.version>
@@ -269,7 +269,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <source>21</source>
                     <target>21</target>
@@ -282,7 +282,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -296,7 +296,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.2</version>
+                <version>3.10.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -310,7 +310,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
+                <version>1.7.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId> <!-- Settings中server的id值。-->
@@ -322,7 +322,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.5</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
