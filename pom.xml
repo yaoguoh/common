@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>3.3.3</version>
+    <version>3.3.4</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -54,24 +54,24 @@
         <maven.plugin.validation>verbose</maven.plugin.validation>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>3.3.3</common.version>
-        <spring-boot.version>3.3.3</spring-boot.version>
+        <common.version>3.3.4</common.version>
+        <spring-boot.version>3.3.4</spring-boot.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
 
-        <commons-io.version>2.16.1</commons-io.version>
+        <commons-io.version>2.17.0</commons-io.version>
         <commons-text.version>1.12.0</commons-text.version>
-        <commons-lang3.version>3.16.0</commons-lang3.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
         <commons-pool2.version>2.12.0</commons-pool2.version>
-        <commons-compress.version>1.27.0</commons-compress.version>
+        <commons-compress.version>1.27.1</commons-compress.version>
         <commons-configuration2.version>2.11.0</commons-configuration2.version>
-        <elasticsearch.version>8.15.0</elasticsearch.version>
+        <elasticsearch.version>8.15.1</elasticsearch.version>
         <lombok.version>1.18.34</lombok.version>
-        <mapstruct.version>1.6.0</mapstruct.version>
+        <mapstruct.version>1.6.2</mapstruct.version>
         <springdoc.version>2.6.0</springdoc.version>
         <ip2region.version>2.7.0</ip2region.version>
-        <fastjson.version>2.0.52</fastjson.version>
+        <fastjson.version>2.0.53</fastjson.version>
         <xxl-job.version>2.4.1</xxl-job.version>
-        <guava.version>33.3.0-jre</guava.version>
+        <guava.version>33.3.1-jre</guava.version>
         <hutool.version>5.8.32</hutool.version>
         <poi.version>5.3.0</poi.version>
     </properties>
