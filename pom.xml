@@ -64,7 +64,7 @@
         <commons-pool2.version>2.12.0</commons-pool2.version>
         <commons-compress.version>1.27.0</commons-compress.version>
         <commons-configuration2.version>2.11.0</commons-configuration2.version>
-        <elasticsearch.version>8.15.0</elasticsearch.version>
+        <elasticsearch.version>8.15.1</elasticsearch.version>
         <lombok.version>1.18.34</lombok.version>
         <mapstruct.version>1.6.0</mapstruct.version>
         <springdoc.version>2.6.0</springdoc.version>
