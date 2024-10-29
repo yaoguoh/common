@@ -50,12 +50,13 @@ public class AuditLog implements Serializable {
     /**
      * 请求url
      */
-    @Column(name = "`url`", length = 2550)
+    @Lob
+    @Column(name = "`url`")
     private String       url;
     /**
      * 请求参数
      */
-    @Column(length = 2550)
+    @Lob
     private String       param;
     /**
      * HTTP 请求方式
@@ -76,7 +77,7 @@ public class AuditLog implements Serializable {
     /**
      * 返回数据
      */
-    @Column(length = 2550)
+    @Lob
     private String       result;
     /**
      * 执行用时
@@ -89,7 +90,7 @@ public class AuditLog implements Serializable {
     /**
      * 错误信息
      */
-    @Column(length = 2550)
+    @Lob
     private String       errorMessage;
 
     /**
