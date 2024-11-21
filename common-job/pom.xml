@@ -12,7 +12,7 @@
     <artifactId>common-job</artifactId>
 
     <properties>
-        <xxl-job.version>2.3.0</xxl-job.version>
+        <xxl-job.version>2.3.1</xxl-job.version>
     </properties>
 
     <dependencies>
