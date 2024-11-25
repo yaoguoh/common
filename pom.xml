@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.yaoguoh</groupId>
     <artifactId>common</artifactId>
-    <version>3.3.6</version>
+    <version>3.4.0</version>
     <packaging>pom</packaging>
     <name>common</name>
     <description>Common Dependencies</description>
@@ -54,8 +54,8 @@
         <maven.plugin.validation>verbose</maven.plugin.validation>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>3.3.6</common.version>
-        <spring-boot.version>3.3.6</spring-boot.version>
+        <common.version>3.4.0</common.version>
+        <spring-boot.version>3.4.0</spring-boot.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
 
         <commons-io.version>2.17.0</commons-io.version>
