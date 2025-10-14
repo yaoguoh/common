@@ -63,7 +63,7 @@
         <commons-lang3.version>3.17.0</commons-lang3.version>
         <commons-compress.version>1.27.1</commons-compress.version>
         <commons-configuration2.version>2.11.0</commons-configuration2.version>
-        <elasticsearch.version>8.16.0</elasticsearch.version>
+        <elasticsearch.version>8.18.7</elasticsearch.version>
         <lombok.version>1.18.36</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <springdoc.version>2.6.0</springdoc.version>
